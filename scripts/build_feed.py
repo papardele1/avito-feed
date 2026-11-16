@@ -13,6 +13,19 @@ from description import description as sales_description
 
 ROOT = Path(__file__).resolve().parent.parent
 ADDRESS = "Москва, Багратионовский проезд, 7к2"
+SHOW_FROM, SHOW_TO = 10, 22  # объявления видны с 10:00 до 22:00 по Москве
+
+
+def show_window(now=None):
+    """Окно показа: сегодня 10–22, а после 22:00 — уже завтрашнее."""
+    from datetime import datetime, timedelta, timezone
+    msk = timezone(timedelta(hours=3))
+    now = now or datetime.now(msk)
+    day = now.date() if now.hour < SHOW_TO else now.date() + timedelta(days=1)
+    fmt = "%Y-%m-%dT%H:%M:%S+03:00"
+    begin = datetime(day.year, day.month, day.day, SHOW_FROM, tzinfo=msk)
+    end = datetime(day.year, day.month, day.day, SHOW_TO, tzinfo=msk)
+    return begin.strftime(fmt), end.strftime(fmt)
 COUNTRY = "Китай"
 
 EN_RU = {
@@ -182,8 +195,11 @@ def description(it):
             "<p>Магазин ATOMM.STORE — техника Apple, Samsung, Google и другие бренды.</p>")
 
 
-def ad_xml(it, prof, images):
-    el = [("Id", it["id"]), ("Address", ADDRESS), ("Title", it["title"]), ("Price", it["price"])]
+def ad_xml(it, prof, images, window=None):
+    el = [("Id", it["id"])]
+    if window:
+        el += [("DateBegin", window[0]), ("DateEnd", window[1])]
+    el += [("Address", ADDRESS), ("Title", it["title"]), ("Price", it["price"])]
     for k, v in prof.items():
         if v:
             el.append((k, v))
@@ -201,6 +217,7 @@ def image_key(it):
 
 def build(items, images_map):
     ads, skipped, no_img = [], [], []
+    window = show_window()
     for it in items:
         prof = route(it)
         if not prof:
@@ -210,7 +227,7 @@ def build(items, images_map):
         if not imgs:
             no_img.append(image_key(it))
             continue
-        ads.append(ad_xml(it, prof, imgs))
+        ads.append(ad_xml(it, prof, imgs, window))
     xml = '<?xml version="1.0" encoding="UTF-8"?>\n<Ads formatVersion="3" target="Avito.ru">\n' + "\n".join(ads) + "\n</Ads>\n"
     return xml, skipped, no_img
 

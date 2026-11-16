@@ -71,15 +71,17 @@ async def finish(code):
 
 async def qr():
     """Вход по QR: сканировать в Telegram → Настройки → Устройства → Подключить устройство."""
-    import qrcode
     c = client()
     await c.connect()
     qr_login = await c.qr_login()
-    for attempt in range(12):  # ~6 минут: QR обновляется каждые ~30 секунд
-        q = qrcode.QRCode(border=2)
-        q.add_data(qr_login.url)
-        print(f"\n===== QR №{attempt + 1}: отсканируйте в Telegram → Настройки → Устройства → Подключить устройство =====")
-        q.print_ascii(invert=True)
+    for attempt in range(16):  # ~8 минут: QR обновляется каждые ~30 секунд
+        from urllib.parse import quote
+        img = "https://api.qrserver.com/v1/create-qr-code/?size=420x420&margin=20&data=" + quote(qr_login.url, safe="")
+        print(f"\n===== QR №{attempt + 1} (действует ~30 секунд) =====")
+        print("С КОМПЬЮТЕРА: откройте ссылку и отсканируйте картинку в Telegram → Настройки → Устройства → Подключить устройство:")
+        print(img)
+        print("С ТЕЛЕФОНА: нажмите на ссылку — откроется Telegram и спросит подтверждение входа:")
+        print(qr_login.url)
         sys.stdout.flush()
         try:
             await qr_login.wait(timeout=30)
@@ -90,7 +92,7 @@ async def qr():
             await c.sign_in(password=os.environ["TG_2FA"])
             break
     else:
-        raise SystemExit("QR не отсканирован за 6 минут — запустите ещё раз.")
+        raise SystemExit("QR не отсканирован за 8 минут — запустите ещё раз.")
     me = await c.get_me()
     SESSION.write_bytes(fernet().encrypt(c.session.save().encode()))
     if PENDING.exists():

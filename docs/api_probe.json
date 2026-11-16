@@ -1,0 +1,130 @@
+{
+ "token": {
+  "status": 200,
+  "ok": true,
+  "scope": null,
+  "error": null
+ },
+ "accounts/self": {
+  "status": 200,
+  "fields": [
+   "id",
+   "name",
+   "phone",
+   "phones",
+   "profile_url"
+  ]
+ },
+ "/core/v1/items": {
+  "status": 200,
+  "shape": {
+   "meta": {
+    "page": "int",
+    "per_page": "int"
+   },
+   "resources": "list[0]"
+  }
+ },
+ "/autoload/v2/profile": {
+  "status": 200,
+  "shape": {
+   "feeds_data": "list[1]",
+   "autoload_enabled": "bool",
+   "report_email": "NoneType",
+   "allow_pay_over_limit": "bool",
+   "schedule": "list[1]",
+   "uploadMode": "str"
+  }
+ },
+ "/autoload/v2/reports": {
+  "status": 200,
+  "shape": {
+   "_deprecation": {
+    "message": "str",
+    "sunset": "str",
+    "successor": "str"
+   },
+   "meta": {
+    "per_page": "int",
+    "page": "int",
+    "pages": "int",
+    "total": "int"
+   },
+   "reports": "list[1]"
+  }
+ },
+ "/autoload/v2/reports/last_completed_report": {
+  "status": 404,
+  "shape": {
+   "error": {
+    "code": "int",
+    "message": "str"
+   }
+  }
+ },
+ "/messenger/v2/accounts/{id}/chats": {
+  "status": 200,
+  "shape": {
+   "chats": "list[0]",
+   "meta": {
+    "has_more": "bool"
+   }
+  }
+ },
+ "/messenger/v3/webhook/subscriptions": {
+  "status": 404,
+  "shape": {
+   "message": "str",
+   "code": "int"
+  }
+ },
+ "/stats/v1/accounts/{id}/items": {
+  "status": 200,
+  "shape": {
+   "result": {}
+  }
+ },
+ "/cpa/v3/balanceInfo": {
+  "status": 200,
+  "shape": {
+   "balance": "int"
+  }
+ },
+ "/tariff/info/1": {
+  "status": 404,
+  "shape": {
+   "errors": "list[1]"
+  }
+ },
+ "/ratings/v1/info": {
+  "status": 200,
+  "shape": {
+   "isEnabled": "bool",
+   "rating": {
+    "score": "int",
+    "reviewsWithScoreCount": "int",
+    "reviewsCount": "int"
+   }
+  }
+ },
+ "/order-management/1/orders": {
+  "status": 403,
+  "shape": {
+   "code": "int",
+   "message": "str"
+  }
+ },
+ "/core/v1/accounts/{id}/balance/": {
+  "status": 200,
+  "shape": {
+   "bonus": "int",
+   "real": "int"
+  }
+ },
+ "/cpxpromo/1/getBids/0": {
+  "status": 404,
+  "shape": {
+   "message": "str"
+  }
+ }
+}

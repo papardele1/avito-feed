@@ -75,6 +75,37 @@ def load_phone_catalog():
 PHONES = load_phone_catalog()
 
 
+def load_nested():
+    """Вложенный справочник Авито: (vendor, model) → {память ГБ: {цвет: [оперативка]}}."""
+    out = {}
+    f = ROOT / "data" / "avito_phone_nested.txt"
+    if not f.exists():
+        return out
+    for line in f.read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        key, *mems = line.split("#")
+        vendor, model = key.split("|")
+        d = {}
+        for m in mems:
+            mem, colors = m.split(":", 1)
+            d[f"{mem} ГБ"] = {c.split(">")[0]: [f"{r} ГБ" for r in c.split(">")[1].split(",")]
+                             for c in colors.split("~")}
+        out[(vendor, model)] = d
+    return out
+
+
+NESTED = load_nested()
+
+# Ближайшие цвета, если точного нет в справочнике (по порядку)
+NEAR = {"голубой": ["синий", "фиолетовый"], "синий": ["голубой", "фиолетовый", "черный"],
+        "черный": ["серый", "синий", "темно-серый"], "серый": ["темно-серый", "черный", "серебристый"],
+        "серебристый": ["белый", "серый"], "белый": ["серебристый", "бежевый"],
+        "золотистый": ["бежевый", "желтый"], "бежевый": ["золотистый", "белый"],
+        "фиолетовый": ["розовый", "синий"], "зеленый": ["серый"], "красный": ["оранжевый", "розовый"],
+        "розовый": ["фиолетовый", "красный"], "оранжевый": ["красный", "золотистый"]}
+
+
 def norm(s):
     s = s.lower().replace("galaxy", "").replace("5g", "").replace("4g", "")
     return re.sub(r"[^a-z0-9+]", "", s)
@@ -115,9 +146,10 @@ def color_for(src, allowed):
         return None
     if not allowed or cand in allowed:
         return cand
-    near = {"голубой": "синий", "синий": "голубой", "серый": "черный", "серебристый": "белый",
-            "золотистый": "бежевый", "бежевый": "золотистый"}.get(cand)
-    return near if near in allowed else None
+    for near in NEAR.get(cand, []):
+        if near in allowed:
+            return near
+    return None
 
 
 def mem_for(mem_ru, allowed):
@@ -136,11 +168,20 @@ def route(it):
     base = {"Category": None}
     if gt == "Мобильные телефоны" and it.get("memory"):
         vendor, model = match_phone(it["model"])
+        if (vendor, model) not in PHONES:
+            model = re.sub(r"\s+[45]G$", "", model or "", flags=re.I)
         info = PHONES.get((vendor, model), {})
+        mem = mem_for(it["memory"], info.get("mem"))
+        nest = NESTED.get((vendor, model), {}).get(mem or "", {})
+        color = color_for(it.get("color_src", ""), list(nest) or info.get("colors"))
+        ram = it.get("ram") or (info.get("ram") or [None])[0]
+        rams = nest.get(color or "")
+        if rams and ram not in rams:
+            ram = None  # в справочнике Авито нет такой связки — Авито определит сам
         p = {"Category": "Телефоны", "GoodsType": "Мобильные телефоны", "Vendor": vendor, "Model": model,
-             "MemorySize": mem_for(it["memory"], info.get("mem")),
-             "Color": color_for(it.get("color_src", ""), info.get("colors")),
-             "RamSize": it.get("ram") or (info.get("ram") or [None])[0],
+             "MemorySize": mem,
+             "Color": color,
+             "RamSize": ram,
              "SimConfig": it.get("sim") or None, "Set": "Коробка", "BoxSealed": "Да",
              "RegionalVersion": REGION.get(it.get("region", ""))}
         return p

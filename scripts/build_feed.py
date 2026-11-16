@@ -191,9 +191,10 @@ def route(it):
     if "ring" in src and ("oura" in src or "galaxy ring" in t or "sm-q50" in src):
         return {"Category": "Телефоны", "GoodsType": "Смарт-часы и фитнес-браслеты", "GoodsSubType": "Умные кольца"}
     if gt == "Планшеты" and "keyboard" not in src:
-        return {"Category": "Планшеты и электронные книги", "GoodsType": "Планшеты"}
+        return {"Category": "Планшеты и электронные книги", "GoodsType": "Планшеты", "ProductsType": "Планшет"}
     if gt == "Ноутбуки":
-        return {"Category": "Ноутбуки"}
+        kb = "Есть кириллица" if re.search(r"\bru/a\b|кирил|рус", src) else "Нет кириллицы"
+        return {"Category": "Ноутбуки", "KBLayout": kb}
     if re.search(r"airpods|buds|powerbeats", src):
         return {"Category": "Аудио и видео", "GoodsType": "Наушники"}
     if "magic keyboard" in src:

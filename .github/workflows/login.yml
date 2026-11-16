@@ -3,13 +3,8 @@ name: Вход в Telegram (один раз)
 on:
   workflow_dispatch:
     inputs:
-      step:
-        description: "Шаг: 1 — получить код, 2 — ввести код"
-        required: true
-        type: choice
-        options: ["1", "2"]
       code:
-        description: "Шаг 2: код из Telegram"
+        description: "Оставьте пустым, чтобы получить код. Впишите код из Telegram, чтобы завершить вход"
         required: false
 
 permissions:
@@ -33,12 +28,16 @@ jobs:
           TG_PHONE: ${{ secrets.TG_PHONE }}
           TG_CODE: ${{ inputs.code }}
         run: |
-          echo "::add-mask::${TG_CODE}"
-          if [ "${{ inputs.step }}" = "1" ]; then python scripts/login.py start; else python scripts/login.py finish; fi
+          if [ -z "${TG_CODE}" ]; then
+            python scripts/login.py start
+          else
+            echo "::add-mask::${TG_CODE}"
+            python scripts/login.py finish
+          fi
       - name: Сохранить
         run: |
           git config user.name "avito-feed-bot"
           git config user.email "actions@users.noreply.github.com"
           git add -A data/
-          git diff --cached --quiet || git commit -m "Telegram: шаг входа ${{ inputs.step }}"
+          git diff --cached --quiet || git commit -m "Telegram: вход"
           git push

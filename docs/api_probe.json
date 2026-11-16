@@ -15,6 +15,17 @@
    "profile_url"
   ]
  },
+ "deprecation": {
+  "message": "This endpoint is deprecated. Use /autoload/v4/uploads instead.",
+  "sunset": "2027-03-08",
+  "successor": "/autoload/v4/uploads"
+ },
+ "report_fields": [
+  "id",
+  "started_at",
+  "finished_at",
+  "status"
+ ],
  "/core/v1/items": {
   "status": 200,
   "shape": {
@@ -122,6 +133,66 @@
   }
  },
  "/cpxpromo/1/getBids/0": {
+  "status": 404,
+  "shape": {
+   "message": "str"
+  }
+ },
+ "/autoload/v3/reports/last_completed_report": {
+  "status": 404,
+  "shape": {
+   "error": {
+    "code": "int",
+    "message": "str"
+   }
+  }
+ },
+ "/autoload/v3/reports/{rid}": {
+  "status": 200,
+  "shape": {
+   "_deprecation": {
+    "message": "str",
+    "sunset": "str",
+    "successor": "str"
+   },
+   "events": "list[0]",
+   "feeds_urls": "list[1]",
+   "finished_at": "str",
+   "listing_fees": {
+    "single": "dict",
+    "packages": "list"
+   },
+   "report_id": "int",
+   "section_stats": {
+    "title": "str",
+    "slug": "str",
+    "sections": "list",
+    "count": "int"
+   },
+   "source": "str",
+   "started_at": "str",
+   "status": "str"
+  }
+ },
+ "/autoload/v2/reports/{rid}/items": {
+  "status": 200,
+  "shape": {
+   "_deprecation": {
+    "message": "str",
+    "sunset": "str",
+    "successor": "str"
+   },
+   "items": "list[1]",
+   "meta": {
+    "per_page": "int",
+    "page": "int",
+    "pages": "int",
+    "total": "int"
+   },
+   "report_id": "int"
+  }
+ },
+ "/autoload/v3/reports": {
   "status": 404,
   "shape": {
    "message": "str"

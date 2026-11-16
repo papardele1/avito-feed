@@ -1,0 +1,764 @@
+{
+ "Samsung A18|light blue": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/41bbf1c8ab564c32.jpg"
+ ],
+ "Samsung A18|black": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/393f0b41be02c9c9.jpg"
+ ],
+ "Samsung A36 5G|black": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/5206a5481174d559.jpg"
+ ],
+ "Samsung A56 5G|graphite": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/91af71318f72fed0.jpg"
+ ],
+ "Samsung A57|ice blue": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/3ebd323e6a2dc8f7.jpg"
+ ],
+ "Samsung A57|lilac": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/140dd6689fcea5ce.jpg"
+ ],
+ "Samsung A57|navy": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/139e1d51c1442966.jpg"
+ ],
+ "Samsung A57|gray": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/4069a1911d28996c.jpg"
+ ],
+ "Samsung S25 Edge|jetblack": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/d924e951441c9de8.jpg"
+ ],
+ "Samsung S25 FE|navy": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/ea77c46921b41cb4.jpg"
+ ],
+ "Samsung S25 FE|white": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/bc56b838f88a72bd.jpg"
+ ],
+ "Samsung S25|mint": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/81c808a2673a4cff.jpg"
+ ],
+ "Samsung S25 Ultra|black": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/ccec9312e62d1abe.jpg"
+ ],
+ "Samsung S25 Ultra|gray": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/0d1c0a1ef0c32fa4.jpg"
+ ],
+ "Samsung S25 Ultra|whitesilver": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/1497b49b88783999.jpg"
+ ],
+ "Samsung S26 FE|blueberry": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/03f96cf51a837281.jpg"
+ ],
+ "Samsung S26 FE|pistachio": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/5aebac203ae33fcf.jpg"
+ ],
+ "Samsung S26 FE|graphite": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/12f28851a56f5efa.jpg"
+ ],
+ "Samsung S26|cobalt violet": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/e463d07c3e1727f1.jpg"
+ ],
+ "Samsung S26|black": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/8cee37bf67409eee.jpg"
+ ],
+ "Samsung S26|sky blue": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/344a6dfe4799a01d.jpg"
+ ],
+ "Samsung S26|silver shadow": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/6c4932aa3acf3997.jpg"
+ ],
+ "Samsung S26|white": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/dcd82292710bc4f1.jpg"
+ ],
+ "Samsung S26+|black": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/8df2c3f28a58ce0d.jpg"
+ ],
+ "Samsung S26+|cobalt violet": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/647eb2dc4efb599a.jpg"
+ ],
+ "Samsung S26+|sky blue": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/496f386f7bfb24e8.jpg"
+ ],
+ "Samsung S26+|white": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/762c5ba1168fab64.jpg"
+ ],
+ "Samsung S26 Ultra|white": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/07de375d5bfb94b5.jpg"
+ ],
+ "Samsung S26 Ultra|sky blue": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/3aa8e43bad123e2e.jpg"
+ ],
+ "Samsung Z Flip8|graphite": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/2b14f11a26c9277b.jpg"
+ ],
+ "Samsung Z Fold7|silver shadow": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/e2b276bcbb7a0003.jpg"
+ ],
+ "Samsung Z Fold7|jetblack": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/20708c59e8d06294.jpg"
+ ],
+ "Samsung Z Fold7|blue shadow": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/61bea591ce03dd8d.jpg"
+ ],
+ "Samsung Z Fold8|graphite": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/3d16c5fc317709a1.jpg"
+ ],
+ "Samsung Z Fold8|cream": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/7f6f6755e933ff6d.jpg"
+ ],
+ "Samsung Z Fold8 Ultra|cream": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/4e0b2d2a2b10f83a.jpg"
+ ],
+ "Samsung Z Fold8 Ultra|violet shadow": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/94916520214ec4f9.jpg"
+ ],
+ "Samsung Z Fold8 Ultra|graphite": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/f0155e09266bd15f.jpg"
+ ],
+ "Samsung Z Fold8 Ultra|green shadow": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/9539b0f3decdf217.jpg"
+ ],
+ "Samsung Tab S10 Lite|gray": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/e349474d1f126be0.jpg"
+ ],
+ "Samsung Tab S10 Lite 5G|gray": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/e349474d1f126be0.jpg"
+ ],
+ "Samsung Tab S10 Lite 5G|silver": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/ac374b3299344917.jpg"
+ ],
+ "Samsung Tab S10 FE|gray": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/5e4faf4357f080f3.jpg"
+ ],
+ "Samsung Tab S10 FE +|gray": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/5e4faf4357f080f3.jpg"
+ ],
+ "Samsung Tab S10 FE +|silver": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/37f2b098f259d880.jpg"
+ ],
+ "Samsung Tab S10 FE + 5G|gray": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/5e4faf4357f080f3.jpg"
+ ],
+ "Samsung Tab S10 FE + 5G|silver": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/37f2b098f259d880.jpg"
+ ],
+ "Samsung Tab S10 FE + 5G|blue": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/9171fb2faa172fb2.jpg"
+ ],
+ "Samsung Tab S10 FE+|silver": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/8c261cf7f28e5b92.jpg"
+ ],
+ "Samsung Tab S10 FE+|blue": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/49014506adb201ee.jpg"
+ ],
+ "Samsung Tab S10 FE+ 5G|gray": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/f009e2064d829070.jpg"
+ ],
+ "Samsung Tab S10 FE+ 5G|silver": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/8c261cf7f28e5b92.jpg"
+ ],
+ "Samsung Tab S10 FE+ 5G|blue": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/49014506adb201ee.jpg"
+ ],
+ "Samsung Tab A11|silver": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/aab2fda9c25b617b.jpg"
+ ],
+ "Samsung Tab S11|gray": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/fb8e258c7c760801.jpg"
+ ],
+ "Samsung Tab S11|silver": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/428d66677f7a5829.jpg"
+ ],
+ "Samsung Tab S11 5G|gray": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/fb8e258c7c760801.jpg"
+ ],
+ "Samsung Tab S11 5G|silver": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/428d66677f7a5829.jpg"
+ ],
+ "Samsung Tab S11 Ultra|gray": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/e1a8262e8e8b9c13.jpg"
+ ],
+ "Samsung Tab S11 Ultra 5G|silver": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/b74b5d4bca7eda96.jpg"
+ ],
+ "Samsung Tab S12+|silver": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/428d66677f7a5829.jpg"
+ ],
+ "Samsung Tab S12+ 5G|gray": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/6876f9871ba63366.jpg"
+ ],
+ "Samsung Tab S12 Ultra|silver": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/fc40ed07dc4bb85f.jpg"
+ ],
+ "Samsung Tab S12 Ultra|gray": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/3afa2e120ebba846.jpg"
+ ],
+ "Samsung Tab S12 Ultra 5G|gray": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/3afa2e120ebba846.jpg"
+ ],
+ "Samsung Galaxy Buds 4 Black|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/e022251dd729c33f.jpg"
+ ],
+ "Samsung Galaxy Buds 4 White|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/0f2d05e60fad96cc.jpg"
+ ],
+ "Samsung Galaxy Watch8 40mm Graphite|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/66e3f7e1e3745423.jpg"
+ ],
+ "Samsung Galaxy Watch8 44mm Silver|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/0506023697913f19.jpg"
+ ],
+ "Samsung Galaxy Watch8 Classic 46mm White|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/e4d687ef57bdcfa7.jpg"
+ ],
+ "Samsung Galaxy Watch9 40mm Cream|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/08f77046f8b497f6.jpg"
+ ],
+ "Samsung Galaxy Watch9 44mm Graphite|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/86609b94dff55eeb.jpg"
+ ],
+ "Samsung Galaxy Watch9 44mm Silver|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/fe41327ccc705b33.jpg"
+ ],
+ "Samsung Galaxy Watch Ultra (2025) 47mm LTE White|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/f031d29a72298d50.jpg"
+ ],
+ "Samsung Galaxy Watch Ultra (2025) 47mm LTE Blue|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/661025da9ef057b1.jpg"
+ ],
+ "Samsung Galaxy Watch Ultra (2025) 47mm LTE Gray|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/bef524b990b832a9.jpg"
+ ],
+ "Beats Powerbeats Fit Pink|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/68ba2d44582eff5e.jpg"
+ ],
+ "iPhone Duo|night sky": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/b99ecb3df2dc7d12.jpg"
+ ],
+ "iPhone Duo|star white": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/b1c06ad3110f7d0c.jpg"
+ ],
+ "iPhone 18 Pro|silver": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/9d3da46a5eb2fa40.jpg"
+ ],
+ "iPhone 18 Pro|glacier": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/99bf2e372bf3c881.jpg"
+ ],
+ "iPhone 18 Pro|black": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/f2dfb0a43b3a090a.jpg"
+ ],
+ "iPhone 18 Pro|burgundy": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/f8283c5dfc2c7a80.jpg"
+ ],
+ "iPhone 18 Pro Max|glacier": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/257283d5a4c48a90.jpg"
+ ],
+ "iPhone 18 Pro Max|black": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/d3cdca67e7aa49d3.jpg"
+ ],
+ "iPhone 18 Pro Max|silver": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/5ef19234f9166e54.jpg"
+ ],
+ "iPhone 18 Pro Max|burgundy": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/f8283c5dfc2c7a80.jpg"
+ ],
+ "MacBook Air 13 M5|sky blue": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/0f00be382998ae6a.jpg"
+ ],
+ "MacBook Air 13 M5|starlight": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/41ba698801174071.jpg"
+ ],
+ "MacBook Air 15 M5|sky blue": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/898b951a84da6b31.jpg"
+ ],
+ "MacBook Air 15 M5|starlight": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/59fce0d465dc3ba8.jpg"
+ ],
+ "MacBook Pro 14 M5 Pro|space black": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/85b073fb8770e041.jpg"
+ ],
+ "MacBook Pro 14 M5|space black": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/85b073fb8770e041.jpg"
+ ],
+ "MacBook Pro 16 M5 Pro|space black": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/e143aff741e8ebdf.jpg"
+ ],
+ "MacBook Pro 16 M5 Max|silver": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/3483cc728bd0f0ac.jpg"
+ ],
+ "iPad 11|yellow": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/d89d2823d69d8dca.jpg"
+ ],
+ "iPad 11|pink": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/fe1ab9c76b48ad7d.jpg"
+ ],
+ "iPad 11|blue": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/99b1de992b2fc939.jpg"
+ ],
+ "iPad Air 11 M3|starlight": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/0c374c5a3f73bea1.jpg"
+ ],
+ "iPad Air 11 M4|blue": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/3ce7e1123cc55a24.jpg"
+ ],
+ "iPad Air 11 M4|space gray": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/215508c3d6ba82af.jpg"
+ ],
+ "iPad Air 11 M4|starlight": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/aa81fcca18663a40.jpg"
+ ],
+ "iPad Air 11 M4|purple": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/f8f767dc8a559d56.jpg"
+ ],
+ "iPad Air 13 M4|purple": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/08ecedd517e1f997.jpg"
+ ],
+ "iPad Air 13 M4|space gray": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/4a3f447ea68dcc78.jpg"
+ ],
+ "iPad Air 13 M4|starlight": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/1cdf598fa45092e6.jpg"
+ ],
+ "iPad Air 13 M4|blue": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/5bcb7648cf9ba3fe.jpg"
+ ],
+ "iPad Air 13 M4|gray": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/4a3f447ea68dcc78.jpg"
+ ],
+ "iPad Pro 11 M5|space black": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/5af594937a34745a.jpg"
+ ],
+ "Magic Keyboard iPad Air 11 White|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/baad854d936ad1f7.jpg"
+ ],
+ "Magic Keyboard iPad Air 11 Black|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/6c00d030301e1a48.jpg"
+ ],
+ "Magic Keyboard iPad Air 13 White|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/edae0baf9e1845ea.jpg"
+ ],
+ "Magic Keyboard iPad Air 13 Black|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/f30704358b8641de.jpg"
+ ],
+ "Magic Keyboard iPad Pro 11 White (с гравировкой)|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/dfd5bf2a1ffca434.jpg"
+ ],
+ "Magic Keyboard iPad Pro 11 Black|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/a1c8c6cb04cf6a18.jpg"
+ ],
+ "Magic Keyboard iPad Pro 13 White|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/24e8826e77872d3b.jpg"
+ ],
+ "Magic Keyboard iPad Pro 13 Black|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/a28a1b1354e709a8.jpg"
+ ],
+ "Honor 600 Pro|black": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/7c177758ca540ddc.jpg"
+ ],
+ "Honor 600 Pro 5G|orange": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/f3cdffaf986fc098.jpg"
+ ],
+ "POCO C95 Pro|black": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/fc7af060a8560a16.jpg"
+ ],
+ "POCO C95 Pro|blue": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/ee066e3c9e9c7f07.jpg"
+ ],
+ "POCO C95 Pro|green": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/5063f76f2e7ff015.jpg"
+ ],
+ "POCO M7|blue": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/cac7f8f2bc4569c3.jpg"
+ ],
+ "POCO M8 5G|green": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/6a6edaef2307737f.jpg"
+ ],
+ "POCO X8|black": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/d19966cfc1878720.jpg"
+ ],
+ "POCO X8 Pro|yellow": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/74fd097d09e69c38.jpg"
+ ],
+ "POCO F8 Ultra|black": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/008bda23a0193481.jpg"
+ ],
+ "POCO F9 Pro|black": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/033906b846a3c188.jpg"
+ ],
+ "POCO F9 Pro|white": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/859e2b04576e5fd5.jpg"
+ ],
+ "POCO F9 Pro|green": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/fce80c2e5e694dfc.jpg"
+ ],
+ "POCO F9 Pro|aurora green": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/fce80c2e5e694dfc.jpg"
+ ],
+ "POCO F9 Ultra|black": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/141afca727e20e7d.jpg"
+ ],
+ "Xiaomi MIX Flip|black": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/8f3c80062dfadf4d.jpg"
+ ],
+ "Xiaomi 17T|black": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/03c7d5e7006dfe74.jpg"
+ ],
+ "Xiaomi 17T|white": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/88f703c3b52fdf90.jpg"
+ ],
+ "Xiaomi 17T Pro|deep blue": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/43fdd23a63b547db.jpg"
+ ],
+ "Xiaomi 17 Ultra|black": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/67e0b183f418ca32.jpg"
+ ],
+ "Xiaomi 17 Ultra|white": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/915006625817b282.jpg"
+ ],
+ "Xiaomi 17 Ultra|starlit green": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/085cba050d1dbf1a.jpg"
+ ],
+ "OnePlus 15 5G|infinite black": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/75ce51e196c91356.jpg"
+ ],
+ "OnePlus 15 5G|ultra violet": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/f72e64aeadbd160c.jpg"
+ ],
+ "GoPro Mission 1|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/818a6add7b2c18ab.jpg"
+ ],
+ "GoPro Mission 1 Pro|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/c292d14b37174729.jpg"
+ ],
+ "Insta 360 X5 - Cycling Bundle|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/53abf36a1563abe3.jpg"
+ ],
+ "DJI Osmo 360 II Standard Combo|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/93bf978589d81382.jpg"
+ ],
+ "DJI Osmo 360 II Adventure Combo|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/c817713d8cffe71a.jpg"
+ ],
+ "Apple Watch SE3 40 Midnight 2025 S/M|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/e0a22710f31bd601.jpg"
+ ],
+ "Apple Watch SE3 44 Midnight 2025 S/M|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/f3cfb1a5621e2e5e.jpg"
+ ],
+ "Apple Watch SE3 40 Midnight 2026 S/M|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/e0a22710f31bd601.jpg"
+ ],
+ "Apple Watch SE3 40 Midnight 2026 M/L|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/e0a22710f31bd601.jpg"
+ ],
+ "Apple Watch SE3 44 Midnight 2026 S/M|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/f3cfb1a5621e2e5e.jpg"
+ ],
+ "Apple Watch SE3 44 Midnight 2026 M/L|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/f3cfb1a5621e2e5e.jpg"
+ ],
+ "Apple Watch S11 42 Jet Black S/M|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/32e1f2da44a8bfe1.jpg"
+ ],
+ "Apple Watch S11 42 Jet Black M/L|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/32e1f2da44a8bfe1.jpg"
+ ],
+ "Apple Watch S11 42 Space Gray M/L|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/b0b948099efcc0e9.jpg"
+ ],
+ "Apple Watch S11 46 Space Gray M/L|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/b91dc51a6b852067.jpg"
+ ],
+ "Apple Watch S11 46 Space Gray S/M|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/b91dc51a6b852067.jpg"
+ ],
+ "Apple Watch S11 46 Silver Pur Fog S/M|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/ea3fc166b54bc1c3.jpg"
+ ],
+ "Apple Watch S11 46 Silver Pur Fog M/L|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/ea3fc166b54bc1c3.jpg"
+ ],
+ "Apple Watch S11 46 Jet Black S/M|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/ba1d4a4a244e719e.jpg"
+ ],
+ "Apple Watch S12 42 Black M/L|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/b7821cdf06fa54fe.jpg"
+ ],
+ "Apple Watch S12 42 Bronze M/L|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/6cfdc4db41280d75.jpg"
+ ],
+ "Apple Watch S12 42 Space Gray M/L|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/660b9fee6007cfca.jpg"
+ ],
+ "Apple Watch S12 42 Space Gray S/M|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/660b9fee6007cfca.jpg"
+ ],
+ "Apple Watch S12 46 Black M/L|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/466fdbe8f47f7964.jpg"
+ ],
+ "Apple Watch S12 46 Bronze M/L|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/a98e8279cd71568f.jpg"
+ ],
+ "Apple Watch S12 46 Space Gray S/M|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/83c3b4d7fa4c7211.jpg"
+ ],
+ "Apple Watch S12 46 Space Gray M/L|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/83c3b4d7fa4c7211.jpg"
+ ],
+ "Apple Watch S12 46 Gold S/M|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/03f9737b8ecef189.jpg"
+ ],
+ "Watch Ultra 3 49 Black Alpine Loop S ()|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/0a6dbcc9ebe93d87.jpg"
+ ],
+ "Apple Watch Ultra 3 49 Black Alpine Loop M ()|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/0a6dbcc9ebe93d87.jpg"
+ ],
+ "Watch Ultra 3 49 Black Alpine Loop L ()|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/0a6dbcc9ebe93d87.jpg"
+ ],
+ "Watch Ultra 3 49 Black Charcoal Loop S/M ()|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/0a6dbcc9ebe93d87.jpg"
+ ],
+ "Watch Ultra 3 49 Black Charcoal Loop M/L ()|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/0a6dbcc9ebe93d87.jpg"
+ ],
+ "Watch Ultra 3 49 Natural Bright Blue Loop S/M ()|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/b003080511cb3a86.jpg"
+ ],
+ "Watch Ultra 3 49 Natural Blue Alpine Loop L ()|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/b003080511cb3a86.jpg"
+ ],
+ "Apple Watch Ultra 3 49 Black Milanese S ()|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/0a6dbcc9ebe93d87.jpg"
+ ],
+ "Apple Watch Ultra 3 49 Black Milanese М ()|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/0a6dbcc9ebe93d87.jpg"
+ ],
+ "Apple Watch Ultra 3 49 Black Milanese L ()|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/0a6dbcc9ebe93d87.jpg"
+ ],
+ "Apple Watch Ultra 3 49 Natural Milanese S ()|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/b003080511cb3a86.jpg"
+ ],
+ "Apple Watch Ultra 3 49 Natural Milanese M ()|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/b003080511cb3a86.jpg"
+ ],
+ "Watch Ultra 4 49 Black Burgundy Trail Loop S/M|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/8ca09a9d6975e16b.jpg"
+ ],
+ "Apple Watch Ultra 4 49 Natural Gray Ocean Band|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/a353c9d68ae6a71e.jpg"
+ ],
+ "Watch Ultra 4 49 Natural Desert Trail Loop M/L|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/a353c9d68ae6a71e.jpg"
+ ],
+ "Watch Ultra 4 49 Natural Desert Alpine Loop M|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/a353c9d68ae6a71e.jpg"
+ ],
+ "Watch Ultra 4 49 Natural Desert Alpine Loop L|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/a353c9d68ae6a71e.jpg"
+ ],
+ "iPhone 16e|black": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/899d5a25e7d30eb6.jpg"
+ ],
+ "iPhone 16e|white": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/139f86f39a8d1183.jpg"
+ ],
+ "iPhone 16|teal": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/86444041bd74b84d.jpg"
+ ],
+ "iPhone 16|ultramarine": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/1a1eccdcf0d9c868.jpg"
+ ],
+ "iPhone 16|black": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/9f2ae0e16f95fec2.jpg"
+ ],
+ "iPhone 16|white": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/bac9771ca33f1a82.jpg"
+ ],
+ "iPhone 16|pink": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/472e34064195550f.jpg"
+ ],
+ "iPhone 16 Plus|teal": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/fe77d7d1f6aee7f9.jpg"
+ ],
+ "iPhone 16 Plus|ultramarine": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/99a3dd37303b84be.jpg"
+ ],
+ "iPhone 16 Plus|black": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/db5b9c67f84c6a4c.jpg"
+ ],
+ "iPhone 16 Plus|white": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/0342ea3a1417982c.jpg"
+ ],
+ "iPhone 16 Pro|desert": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/27782d348a273e20.jpg"
+ ],
+ "iPhone 16 Pro|white": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/bc8f8879e4838cad.jpg"
+ ],
+ "iPhone 16 Pro Max|desert": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/a95696ea4a8aff93.jpg"
+ ],
+ "iPhone 16 Pro Max|black": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/cd7ef20ff284e22a.jpg"
+ ],
+ "iPhone 16 Pro Max|natural": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/e89f5b9562b0d2d2.jpg"
+ ],
+ "iPhone Air|gold": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/f54137f181b8479d.jpg"
+ ],
+ "iPhone Air|blue": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/7780a62fef67b91b.jpg"
+ ],
+ "iPhone Air|white": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/00087b1857299d3a.jpg"
+ ],
+ "iPhone Air|black": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/df0b48ede3f0f98c.jpg"
+ ],
+ "iPhone 17e|pink": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/8338cb00ade4523b.jpg"
+ ],
+ "iPhone 17e|white": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/626d3b05f0549efc.jpg"
+ ],
+ "iPhone 17e|black": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/de806dcae91a852f.jpg"
+ ],
+ "iPhone 17|blue": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/ced1dbff43913a74.jpg"
+ ],
+ "iPhone 17|lavender": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/6e47b2622a9fd79f.jpg"
+ ],
+ "iPhone 17|white": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/d148384201c21e91.jpg"
+ ],
+ "iPhone 17|black": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/af4acba73de446e9.jpg"
+ ],
+ "iPhone 17|sage": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/fef0e261a08587a6.jpg"
+ ],
+ "iPhone 17 Pro|orange": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/0ecbb3dd4a6d105c.jpg"
+ ],
+ "iPhone 17 Pro|silver": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/e27ac82b770f5d06.jpg"
+ ],
+ "iPhone 17 Pro|blue": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/b424437ad1789b01.jpg"
+ ],
+ "iPhone 17 Pro Max|orange": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/0ecbb3dd4a6d105c.jpg"
+ ],
+ "iPhone 17 Pro Max|blue": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/b424437ad1789b01.jpg"
+ ],
+ "iPhone 17 Pro Max|silver": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/e27ac82b770f5d06.jpg"
+ ],
+ "iPhone 15|green": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/822dca43e9024f20.jpg"
+ ],
+ "iPhone 15|black": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/7b7697014ef4ba07.jpg"
+ ],
+ "iPhone 15|blue": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/715e1085a352fb89.jpg"
+ ],
+ "iPhone 15 Pro|blue": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/f37d66db66ada9ba.jpg"
+ ],
+ "AirPods Max 2 Purple 2024|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/eb311e9ab54bb617.jpg"
+ ],
+ "Airpods Max 2 Orange 2024|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/af895aecb48d65a6.jpg"
+ ],
+ "AirPods Max 2 Blue 2026|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/b43008b9c54d4968.jpg"
+ ],
+ "AirPods Max 2 Purple 2026|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/eb311e9ab54bb617.jpg"
+ ],
+ "AirPods Max 2 Starlight 2026|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/339bbaa462522875.jpg"
+ ],
+ "AirPods Max 2 Orange 2026|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/af895aecb48d65a6.jpg"
+ ],
+ "PlayStation 5 Slim Disk 1TB|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/4bb5bb40fce99da6.jpg"
+ ],
+ "Playstation 5 Pro 2Tb (2 ревизия)|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/26f8abaa6712812a.jpg"
+ ],
+ "DualSense Cobalt Blue|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/8001927dd9c6fe21.jpg"
+ ],
+ "DualSense Galactic Purple|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/9992ef45497210a9.jpg"
+ ],
+ "DualSense Starlight Blue|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/943f465534d2f5a3.jpg"
+ ],
+ "DualSense White|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/ccb065637df1b05c.jpg"
+ ],
+ "DualSense Gray Camouflage|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/f4a85ac8ea54abbe.jpg"
+ ],
+ "DualSense Midnight Black|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/4b8af0d7f774f0e1.jpg"
+ ],
+ "Nintendo Switch Joy-Con 2 Controller|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/2c0ba924e84e88ad.jpg"
+ ],
+ "Nintendo Switch Lite Coral|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/c4f0112ca69cabcb.jpg"
+ ],
+ "Nintendo Switch Lite Torquosie|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/5f09751aa427ed9f.jpg"
+ ],
+ "Яндекс Станция Мини 3 Turquoise|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/372b86a53a99b215.jpg"
+ ],
+ "Яндекс Станция Мини 3 Lilac|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/31fea5260de7cb7f.jpg"
+ ],
+ "Яндекс Станция Мини 3 Gray|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/2fbb88bc2fe55c24.jpg"
+ ],
+ "Яндекс Станция Мини 3 Black|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/a1f50502e17fd663.jpg"
+ ],
+ "Яндекс Станция Стрит Green|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/b27da11751f26156.jpg"
+ ],
+ "Яндекс Станция Стрит Purple|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/f55daa2937a4c7d6.jpg"
+ ],
+ "Яндекс Станция Стрит Gray|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/28ce462e7fe073a9.jpg"
+ ],
+ "Яндекс Станция Стрит Black|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/6ed4f5919d4c73b7.jpg"
+ ],
+ "Яндекс Станция 3 Gray|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/1edaec562990e943.jpg"
+ ],
+ "Яндекс Станция 3 Purple|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/8af5343caa00b594.jpg"
+ ],
+ "Яндекс Станция 3 Black|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/2c8246bf3f1e4a75.jpg"
+ ],
+ "Dyson HS08 Complete Long Prussian Blue|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/1904036fa61ef4ea.jpg"
+ ],
+ "Dyson HS08 Complete Long Ceramic Pink Rose Gold|": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/1fc284168afae8b7.jpg"
+ ]
+}

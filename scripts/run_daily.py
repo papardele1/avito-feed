@@ -22,8 +22,16 @@ def main():
     items, errors = parse_price.run(text=text)
     for it in items:
         it["title"] = parse_price.short_title(it["title"])
-    imap_path = ROOT / "data" / "images.json"
-    imap = json.loads(imap_path.read_text(encoding="utf-8")) if imap_path.exists() else {}
+    import images
+    try:
+        imap, img_ok, img_missed = images.ensure_images(items, build_feed.route)
+    except Exception as e:  # noqa: BLE001 — без фото с сайта используем прошлую карту
+        print("Фото с atomm.store не получены:", e)
+        imap_path = ROOT / "data" / "images.json"
+        imap = json.loads(imap_path.read_text(encoding="utf-8")) if imap_path.exists() else {}
+        img_ok, img_missed = [], []
+    else:
+        (ROOT / "data" / "images.json").write_text(json.dumps(imap, ensure_ascii=False, indent=1), encoding="utf-8")
     xml, skipped, no_img = build_feed.build(items, imap)
     new_ads = xml.count("<Ad>")
     old_ads = FEED.read_text(encoding="utf-8").count("<Ad>") if FEED.exists() else 0
@@ -37,6 +45,7 @@ def main():
     FEED.write_text(xml, encoding="utf-8")
     report = {"items": len(items), "ads": new_ads, "skipped": skipped, "no_images": sorted(set(no_img)),
               "unparsed": errors,
+              "photos_matched": img_ok, "photos_missed": img_missed,
               "all": [f"{i['title']} | {i['price']} | {i.get('region','')} | {i['source_line']}" for i in items]}
     (ROOT / "docs" / "report.json").write_text(json.dumps(report, ensure_ascii=False, indent=1), encoding="utf-8")
 

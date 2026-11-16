@@ -1,4 +1,16 @@
 {
+ "iPhone 15|green": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/822dca43e9024f20.jpg"
+ ],
+ "iPhone 15|black": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/7b7697014ef4ba07.jpg"
+ ],
+ "iPhone 15|blue": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/715e1085a352fb89.jpg"
+ ],
+ "iPhone 15 Pro|blue": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/f37d66db66ada9ba.jpg"
+ ],
  "Samsung A07s|black": [
   "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/e96fea5fe511baac.jpg"
  ],
@@ -150,19 +162,19 @@
   "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/5e4faf4357f080f3.jpg"
  ],
  "Samsung Tab S10 FE +|gray": [
-  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/f009e2064d829070.jpg"
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/5e4faf4357f080f3.jpg"
  ],
  "Samsung Tab S10 FE +|silver": [
-  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/8c261cf7f28e5b92.jpg"
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/37f2b098f259d880.jpg"
  ],
  "Samsung Tab S10 FE + 5G|gray": [
-  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/f009e2064d829070.jpg"
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/5e4faf4357f080f3.jpg"
  ],
  "Samsung Tab S10 FE + 5G|silver": [
-  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/8c261cf7f28e5b92.jpg"
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/37f2b098f259d880.jpg"
  ],
  "Samsung Tab S10 FE + 5G|blue": [
-  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/49014506adb201ee.jpg"
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/9171fb2faa172fb2.jpg"
  ],
  "Samsung Tab S10 FE+|silver": [
   "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/8c261cf7f28e5b92.jpg"
@@ -316,6 +328,48 @@
  ],
  "MacBook Pro 16 M5 Max|silver": [
   "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/3483cc728bd0f0ac.jpg"
+ ],
+ "iPad 11|yellow": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/d89d2823d69d8dca.jpg"
+ ],
+ "iPad 11|pink": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/fe1ab9c76b48ad7d.jpg"
+ ],
+ "iPad 11|blue": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/99b1de992b2fc939.jpg"
+ ],
+ "iPad Air 11 M3|starlight": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/0c374c5a3f73bea1.jpg"
+ ],
+ "iPad Air 11 M4|blue": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/3ce7e1123cc55a24.jpg"
+ ],
+ "iPad Air 11 M4|space gray": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/215508c3d6ba82af.jpg"
+ ],
+ "iPad Air 11 M4|starlight": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/aa81fcca18663a40.jpg"
+ ],
+ "iPad Air 11 M4|purple": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/f8f767dc8a559d56.jpg"
+ ],
+ "iPad Air 13 M4|purple": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/08ecedd517e1f997.jpg"
+ ],
+ "iPad Air 13 M4|space gray": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/4a3f447ea68dcc78.jpg"
+ ],
+ "iPad Air 13 M4|starlight": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/1cdf598fa45092e6.jpg"
+ ],
+ "iPad Air 13 M4|blue": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/5bcb7648cf9ba3fe.jpg"
+ ],
+ "iPad Air 13 M4|gray": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/4a3f447ea68dcc78.jpg"
+ ],
+ "iPad Pro 11 M5|space black": [
+  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/5af594937a34745a.jpg"
  ],
  "Magic Keyboard iPad Air 11 White|": [
   "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/baad854d936ad1f7.jpg"
@@ -652,18 +706,6 @@
  ],
  "iPhone 17 Pro Max|silver": [
   "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/e27ac82b770f5d06.jpg"
- ],
- "iPhone 15|green": [
-  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/822dca43e9024f20.jpg"
- ],
- "iPhone 15|black": [
-  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/7b7697014ef4ba07.jpg"
- ],
- "iPhone 15|blue": [
-  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/715e1085a352fb89.jpg"
- ],
- "iPhone 15 Pro|blue": [
-  "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/f37d66db66ada9ba.jpg"
  ],
  "AirPods Max 2 Purple 2024|": [
   "https://raw.githubusercontent.com/papardele1/avito-feed/main/docs/img/eb311e9ab54bb617.jpg"

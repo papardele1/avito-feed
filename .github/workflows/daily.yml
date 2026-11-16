@@ -1,0 +1,33 @@
+name: Обновление фида Авито
+
+on:
+  schedule:
+    - cron: "17 4 * * *"   # каждый день в 07:17 по Москве
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  feed:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install telethon==1.36.0 cryptography
+      - name: Собрать фид
+        env:
+          TG_API_ID: ${{ secrets.TG_API_ID }}
+          TG_API_HASH: ${{ secrets.TG_API_HASH }}
+          TG_SESSION_KEY: ${{ secrets.TG_SESSION_KEY }}
+          TG_CHANNEL_INVITE: ${{ secrets.TG_CHANNEL_INVITE }}
+        run: python scripts/run_daily.py
+      - name: Опубликовать
+        run: |
+          git config user.name "avito-feed-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add docs/avito.xml docs/report.json
+          git diff --cached --quiet || git commit -m "Фид Авито $(date -u +%F)"
+          git push

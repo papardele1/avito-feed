@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       code:
-        description: "Оставьте пустым, чтобы получить код. Впишите код из Telegram, чтобы завершить вход"
+        description: "Оставьте пустым — вход по QR-коду (смотрите журнал запуска). Код из Telegram — только если он пришёл"
         required: false
 
 permissions:
@@ -18,7 +18,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install telethon==1.36.0 cryptography
+      - run: pip install telethon==1.36.0 cryptography qrcode
       - name: Вход
         env:
           TG_API_ID: ${{ secrets.TG_API_ID }}
@@ -29,7 +29,7 @@ jobs:
           TG_CODE: ${{ inputs.code }}
         run: |
           if [ -z "${TG_CODE}" ]; then
-            python scripts/login.py start
+            python -u scripts/login.py qr
           else
             echo "::add-mask::${TG_CODE}"
             python scripts/login.py finish

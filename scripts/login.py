@@ -69,6 +69,36 @@ async def finish(code):
     print(f"Вход выполнен: {me.first_name}. Сессия сохранена в зашифрованном виде.")
 
 
+async def qr():
+    """Вход по QR: сканировать в Telegram → Настройки → Устройства → Подключить устройство."""
+    import qrcode
+    c = client()
+    await c.connect()
+    qr_login = await c.qr_login()
+    for attempt in range(12):  # ~6 минут: QR обновляется каждые ~30 секунд
+        q = qrcode.QRCode(border=2)
+        q.add_data(qr_login.url)
+        print(f"\n===== QR №{attempt + 1}: отсканируйте в Telegram → Настройки → Устройства → Подключить устройство =====")
+        q.print_ascii(invert=True)
+        sys.stdout.flush()
+        try:
+            await qr_login.wait(timeout=30)
+            break
+        except asyncio.TimeoutError:
+            await qr_login.recreate()
+        except SessionPasswordNeededError:
+            await c.sign_in(password=os.environ["TG_2FA"])
+            break
+    else:
+        raise SystemExit("QR не отсканирован за 6 минут — запустите ещё раз.")
+    me = await c.get_me()
+    SESSION.write_bytes(fernet().encrypt(c.session.save().encode()))
+    if PENDING.exists():
+        PENDING.unlink()
+    await c.disconnect()
+    print(f"Вход выполнен: {me.first_name}. Сессия сохранена в зашифрованном виде.")
+
+
 def load_session():
     """Строка сессии для ежедневного прогона."""
     if os.environ.get("TG_SESSION"):
@@ -77,7 +107,9 @@ def load_session():
 
 
 if __name__ == "__main__":
-    if sys.argv[1] == "start":
+    if sys.argv[1] == "qr":
+        asyncio.run(qr())
+    elif sys.argv[1] == "start":
         asyncio.run(start(os.environ["TG_PHONE"]))
     else:
         asyncio.run(finish(os.environ["TG_CODE"].strip()))

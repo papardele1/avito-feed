@@ -81,4 +81,4 @@ if t:
         key = p.replace(str(uid), "{id}").replace(str(rid), "{rid}").split("?")[0]
         out[key] = {"status": st, "shape": shape(r)}
 Path("docs/api_probe.json").write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
-print(json.dumps({k: v.get("status") for k, v in out.items()}))
+print("done")

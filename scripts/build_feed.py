@@ -160,6 +160,73 @@ def mem_for(mem_ru, allowed):
     return val if (not allowed or val in allowed) else None
 
 
+def load_tablets():
+    out = {}
+    f = ROOT / "data" / "avito_tablets.txt"
+    for line in f.read_text(encoding="utf-8").splitlines() if f.exists() else []:
+        if line.strip():
+            key, mems, sims, colors = line.split("#")
+            out[tuple(key.split("|"))] = {
+                "mem": {m.split(">")[0]: m.split(">")[1] for m in mems.split(",")},
+                "sim": sims.split(","), "colors": colors.split(",")}
+    return out
+
+
+TABLETS = load_tablets()
+TAB_COLOR = {"silver": "Серебряный", "gray": "Серый", "grey": "Серый", "space gray": "Серый",
+             "graphite": "Серый", "blue": "Голубой", "sky blue": "Голубой", "pink": "Розовый",
+             "yellow": "Жёлтый", "purple": "Фиолетовый", "starlight": "Золотой", "gold": "Золотой",
+             "space black": "Чёрный", "black": "Чёрный", "coral red": "Красный", "coraled": "Красный",
+             "red": "Красный"}
+TAB_NEAR = {"Чёрный": ["Серый"], "Серый": ["Чёрный", "Серебряный"], "Серебряный": ["Серый"],
+            "Золотой": ["Серебряный"], "Фиолетовый": ["Голубой"], "Голубой": ["Серый"]}
+
+
+def tablet_params(it):
+    """Бренд/модель/память/SIM/оперативка/цвет по справочнику Авито «Планшеты»."""
+    src = it["source_line"].lower()
+    m = it["model"]
+    if m.startswith("iPad") or re.match(r"(air|pro|mini)\b", src):
+        brand = "Apple"
+        low = m.lower()
+        if "mini" in low:
+            model = "iPad mini (2026)"
+        elif "pro" in low:
+            model = "iPad Pro 13 (2025)" if " 13" in low else "iPad Pro 11 (2025)"
+        elif "air" in low:
+            year = "2025" if "m3" in low else "2026"
+            model = f"iPad Air {'13' if ' 13' in low else '11'} ({year})"
+        else:
+            model = "iPad 11 (2025)"
+        cellular = bool(re.search(r"lte|cellular|5g|\bsim", src))
+    else:
+        brand = "Samsung"
+        body = re.sub(r"^samsung\s+(galaxy\s+)?tab\s+", "", m, flags=re.I)
+        cellular = bool(re.search(r"\b(5g|lte)\b", body, re.I))
+        body = re.sub(r"\s+(5g|lte)\b", "", body, flags=re.I)
+        body = re.sub(r"\s*\+\s*", "+", body).strip()
+        model = "Galaxy Tab " + body
+    info = TABLETS.get((brand, model))
+    if not info:
+        return None
+    mem = it["memory"].replace(" ГБ", "")
+    if "ТБ" in mem:
+        mem = str(int(mem.replace(" ТБ", "")) * 1024)
+    if mem not in info["mem"]:
+        return None
+    sim = "Есть" if cellular else "Нет"
+    if sim not in info["sim"]:
+        return None
+    cs = (it.get("color_src") or "").lower()
+    color = next((TAB_COLOR[k] for k in sorted(TAB_COLOR, key=len, reverse=True) if k in cs), None)
+    if color not in info["colors"]:
+        color = next((c for c in TAB_NEAR.get(color, []) if c in info["colors"]), None)
+    if not color:
+        return None
+    return {"Brand": brand, "Model": model, "MemorySize": mem, "SimSlot": sim,
+            "RamSize": info["mem"][mem], "Color": color}
+
+
 def route(it):
     """Категория Авито и характеристики. None — категория ещё не настроена."""
     t = it["title"].lower()
@@ -177,7 +244,7 @@ def route(it):
         ram = it.get("ram") or (info.get("ram") or [None])[0]
         rams = nest.get(color or "")
         if rams and ram not in rams:
-            ram = None  # в справочнике Авито нет такой связки — Авито определит сам
+            return None  # в справочнике Авито нет такой связки (память/цвет/оперативка) — не выкладываем
         p = {"Category": "Телефоны", "GoodsType": "Мобильные телефоны", "Vendor": vendor, "Model": model,
              "MemorySize": mem,
              "Color": color,
@@ -191,7 +258,11 @@ def route(it):
     if "ring" in src and ("oura" in src or "galaxy ring" in t or "sm-q50" in src):
         return {"Category": "Телефоны", "GoodsType": "Смарт-часы и фитнес-браслеты", "GoodsSubType": "Умные кольца"}
     if gt == "Планшеты" and "keyboard" not in src:
-        return {"Category": "Планшеты и электронные книги", "GoodsType": "Планшеты", "ProductsType": "Планшет"}
+        tp = tablet_params(it)
+        if not tp:
+            return None
+        return {"Category": "Планшеты и электронные книги", "GoodsType": "Планшеты", "ProductsType": "Планшет",
+                **tp, "BoxSealed": "Да"}
     if gt == "Ноутбуки":
         kb = "Есть кириллица" if re.search(r"\bru/a\b|кирил|рус", src) else "Нет кириллицы"
         return {"Category": "Ноутбуки", "KBLayout": kb}

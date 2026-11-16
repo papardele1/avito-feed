@@ -9,6 +9,8 @@ import sys
 from pathlib import Path
 from xml.sax.saxutils import escape
 
+from description import description as sales_description
+
 ROOT = Path(__file__).resolve().parent.parent
 ADDRESS = "Москва, Багратионовский проезд, 7к2"
 COUNTRY = "Китай"
@@ -188,7 +190,7 @@ def ad_xml(it, prof, images):
     el += [("AdType", "Товар приобретен на продажу"), ("Condition", "Новое"),
            ("CountryExpedition", COUNTRY), ("MultiItem", "Да"), ("ContactMethod", "По телефону и в сообщениях")]
     parts = [f"    <{k}>{escape(str(v))}</{k}>" for k, v in el]
-    parts.append(f"    <Description><![CDATA[{description(it)}]]></Description>")
+    parts.append(f"    <Description><![CDATA[{sales_description(it, prof)}]]></Description>")
     parts.append("    <Images>" + "".join(f'<Image url="{escape(u)}"/>' for u in images[:10]) + "</Images>")
     return "  <Ad>\n" + "\n".join(parts) + "\n  </Ad>"
 

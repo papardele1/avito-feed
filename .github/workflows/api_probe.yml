@@ -1,0 +1,16 @@
+name: avito-api-probe
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python scripts/api_probe.py
+        env:
+          AVITO_CLIENT_ID: ${{ secrets.AVITO_CLIENT_ID }}
+          AVITO_CLIENT_SECRET: ${{ secrets.AVITO_CLIENT_SECRET }}
+      - run: |
+          git config user.name "avito-bot"; git config user.email "bot@users.noreply.github.com"
+          git add docs/api_probe.json; git commit -m "API probe" || true; git pull --rebase; git push

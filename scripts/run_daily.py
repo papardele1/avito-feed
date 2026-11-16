@@ -36,7 +36,8 @@ def main():
     FEED.parent.mkdir(exist_ok=True)
     FEED.write_text(xml, encoding="utf-8")
     report = {"items": len(items), "ads": new_ads, "skipped": skipped, "no_images": sorted(set(no_img)),
-              "unparsed": errors}
+              "unparsed": errors,
+              "all": [f"{i['title']} | {i['price']} | {i.get('region','')} | {i['source_line']}" for i in items]}
     (ROOT / "docs" / "report.json").write_text(json.dumps(report, ensure_ascii=False, indent=1), encoding="utf-8")
 
 

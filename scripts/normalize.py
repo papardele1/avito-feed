@@ -30,6 +30,21 @@ CYR_LAT = str.maketrans({"С": "C", "с": "c", "Р": "P", "р": "p", "О": "O", 
                          "А": "A", "а": "a", "Е": "E", "е": "e", "М": "M", "Т": "T"})
 
 
+FLAG = re.compile(r"[\U0001F1E6-\U0001F1FF]{2}")
+
+
+def flag_code(m):
+    return "".join(chr(ord(c) - 0x1F1E6 + 65) for c in m)
+
+
+def pull_flags(line):
+    """Флажки 🇪🇺/🇺🇸 → код региона версии; из строки убираются."""
+    codes = [flag_code(f) for f in FLAG.findall(line)]
+    line = FLAG.sub(" ", line)
+    line = re.sub(r"[\u2600-\u27BF\U0001F300-\U0001FAFF\uFE0F]", " ", line)  # прочие эмодзи
+    return re.sub(r"\s+", " ", line).strip(), (codes[0] if codes else "")
+
+
 def fix_latin(s):
     """Кириллические буквы-двойники внутри латинских слов (Сeramic, РOCO, Prо)."""
     def fix_word(w):
@@ -81,10 +96,14 @@ def normalize_post(text):
     section = section_of(text)
     if not section:
         return None, []
-    lines = [fix_latin(re.sub(r"\s+", " ", l).strip()) for l in text.splitlines()]
-    lines = [l for l in lines if l and not DISCLAIMER.match(l) and not SKIP.match(l)]
+    lines = []
+    for raw in text.splitlines():
+        l, region = pull_flags(raw)
+        l = fix_latin(l)
+        if l and not DISCLAIMER.match(l) and not SKIP.match(l):
+            lines.append((l, region))
     out, header, pending = [], "", ""
-    for line in lines:
+    for line, region in lines:
         # «(без дисковода)» под ценой — уточнение к предыдущей позиции
         if line.startswith("(") and not re.search(r"\d{3,}", line) and out:
             n, p, t = out[-1]
@@ -106,6 +125,8 @@ def normalize_post(text):
         if tail and not is_sim_tail(tail):
             name, tail = f"{name} {tail}", ""
         name = rule_name(section, header, name)
+        if name and region:
+            name = f"{name} [{region}]"
         if name:
             out.append((name, price, tail))
     return section, out

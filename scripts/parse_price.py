@@ -298,6 +298,10 @@ def run(files=(), text=None):
                     errors.append(raw)
                 continue
             name, price, tail = parsed
+            region = ""
+            rm = re.search(r"\s*\[([A-Z]{2})\]\s*$", name)
+            if rm:
+                region, name = rm.group(1), name[:rm.start()].strip()
             if kind == "iphone":
                 it = parse_iphone(name, price, tail)
             elif kind == "ipad":
@@ -311,6 +315,7 @@ def run(files=(), text=None):
             if not it:
                 errors.append(raw)
                 continue
+            it["region"] = region
             it["section"] = section
             it["source_line"] = raw.strip()
             it["supplier_price"] = price

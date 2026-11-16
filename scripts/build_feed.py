@@ -32,6 +32,13 @@ EN_RU = {
     "green silk": "зеленый", "yellow": "желтый",
 }
 
+# Флажок у позиции в прайсе → «Версия смартфона» на Авито
+REGION = {"EU": "EU", "US": "USA", "CN": "CN", "IN": "IND", "JP": "JP", "HK": "HK", "GB": "UK",
+          "AE": "UAE", "RU": "Ростест (EAC)"}
+REGION_TEXT = {"EU": "европейская", "US": "американская", "CN": "китайская", "IN": "индийская",
+               "JP": "японская", "HK": "гонконгская", "GB": "британская", "AE": "ОАЭ", "KR": "корейская",
+               "KZ": "казахстанская", "CA": "канадская", "RU": "Ростест"}
+
 # Цвет для категорий со справочником «Чёрный/Белый…» (геймпады и т.п.)
 RU_CAP = {"черный": "Чёрный", "белый": "Белый", "серый": "Серый", "синий": "Синий", "голубой": "Голубой",
           "серебристый": "Серебристый", "фиолетовый": "Фиолетовый", "красный": "Красный",
@@ -119,7 +126,8 @@ def route(it):
              "MemorySize": mem_for(it["memory"], info.get("mem")),
              "Color": color_for(it.get("color_src", ""), info.get("colors")),
              "RamSize": it.get("ram") or (info.get("ram") or [None])[0],
-             "SimConfig": it.get("sim") or None, "Set": "Коробка", "BoxSealed": "Да"}
+             "SimConfig": it.get("sim") or None, "Set": "Коробка", "BoxSealed": "Да",
+             "RegionalVersion": REGION.get(it.get("region", ""))}
         return p
     if "watch" in src or "garmin" in src or "whoop" in src:
         sub = "Фитнес-браслеты" if "whoop" in src else "Смарт-часы"
@@ -161,7 +169,9 @@ def route(it):
 
 
 def description(it):
-    sim = f"\nSIM: {it['sim']}." if it.get("sim") else ""
+    sim = f" SIM: {it['sim']}." if it.get("sim") else ""
+    if it.get("region") in REGION_TEXT:
+        sim += f" Версия: {REGION_TEXT[it['region']]}."
     return (f"<p><strong>{escape(it['title'])}</strong> — новый, оригинал, в заводской упаковке.{sim}</p>"
             "<ul><li>Гарантия 12 месяцев</li>"
             f"<li>Самовывоз: {ADDRESS}</li>"

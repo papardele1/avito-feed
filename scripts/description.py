@@ -15,8 +15,8 @@ STORE = {
 
 SIM_TEXT = {
     "SIM + eSIM": "nano-SIM + eSIM",
-    "Только eSIM": "только eSIM, без лотка для сим-карты. Работает со всеми операторами России — "
-                   "eSIM подключается в салоне или в приложении оператора",
+    "Только eSIM": "только eSIM, без лотка. eSIM поддерживают МТС, Билайн, МегаФон, Т2 и другие — "
+                   "подключается в салоне или в приложении оператора",
     "2 SIM": "две nano-SIM",
 }
 REGION_TEXT = {"EU": "европейская", "US": "американская", "CN": "китайская", "IN": "индийская",
@@ -40,7 +40,7 @@ def specs(it, prof):
     if it.get("sim") in SIM_TEXT:
         rows.append(("SIM", SIM_TEXT[it["sim"]]))
     if it.get("region") in REGION_TEXT:
-        rows.append(("Версия", f"{REGION_TEXT[it['region']]} — полностью работает в России"))
+        rows.append(("Версия", REGION_TEXT[it["region"]] + (" (США)" if it["region"] == "US" else "")))
     if it.get("chip"):
         rows.append(("Процессор", it["chip"]))
     return rows

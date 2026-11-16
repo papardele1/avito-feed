@@ -87,6 +87,25 @@ def stable_id(*parts):
     return "ATM-" + hashlib.md5(raw.encode()).hexdigest()[:10]
 
 
+# Официальные названия цветов Apple (поставщик пишет сокращённо)
+OFFICIAL_COLOR = {
+    ("17 Pro", "Blue"): "Deep Blue", ("17 Pro", "Orange"): "Cosmic Orange",
+    ("17 Pro Max", "Blue"): "Deep Blue", ("17 Pro Max", "Orange"): "Cosmic Orange",
+    ("17", "Blue"): "Mist Blue",
+    ("Air", "Blue"): "Sky Blue", ("Air", "Gold"): "Light Gold", ("Air", "White"): "Cloud White",
+    ("Air", "Black"): "Space Black",
+    ("16 Pro", "Desert"): "Desert Titanium", ("16 Pro", "White"): "White Titanium",
+    ("16 Pro", "Natural"): "Natural Titanium", ("16 Pro", "Black"): "Black Titanium",
+    ("16 Pro Max", "Desert"): "Desert Titanium", ("16 Pro Max", "White"): "White Titanium",
+    ("16 Pro Max", "Natural"): "Natural Titanium", ("16 Pro Max", "Black"): "Black Titanium",
+    ("15 Pro", "Blue"): "Blue Titanium",
+}
+
+
+def fit_title(base, suffix=", новый", limit=50):
+    return base + suffix if len(base + suffix) <= limit else base
+
+
 IPHONE_RE = re.compile(
     r"^(?P<model>Duo|Air|\d{2}[eе]?(?: Plus| Pro Max| Pro| Prо)?)\s+(?P<mem>\d+(?:Tb|TB|ТБ)?)\s+(?P<color>.+?)$",
     re.I,
@@ -115,11 +134,13 @@ def parse_iphone(name, price, tail):
         sim_note = ""
     mem_ru = norm_mem(mem)
     sim_short = {"SIM + eSIM": "SIM+eSIM", "Только eSIM": "eSIM", "2 SIM": "2 SIM"}[sim]
-    title = f"{full} {mem_ru.replace(' ', '')} {color} {sim_short}"
+    official = OFFICIAL_COLOR.get((model, color), color)
+    mem_en = mem.upper().replace("TB", "TB") if mem.lower().endswith("tb") else mem.upper()
+    title = fit_title(f"{full} {mem_en} {official} {sim_short}")
     return {
         "brand": "Apple", "category": "Телефоны", "goods_type": "Мобильные телефоны",
         "model": full, "memory": mem_ru, "color_src": color, "color": color_ru(color),
-        "sim": sim, "sim_note": sim_note, "title": title,
+        "sim": sim, "sim_note": sim_note, "title": title, "color_official": official,
         "group": full,
     }
 

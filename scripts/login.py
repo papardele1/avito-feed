@@ -41,7 +41,17 @@ async def start(phone):
     state = {"session": c.session.save(), "phone": phone, "hash": sent.phone_code_hash}
     PENDING.write_bytes(fernet().encrypt(json.dumps(state).encode()))
     await c.disconnect()
-    print("Код отправлен в Telegram. Запустите шаг 2 и введите его.")
+    kind = type(sent.type).__name__
+    where = {
+        "SentCodeTypeApp": "в приложение Telegram — чат «Telegram» с синей галочкой (не SMS)",
+        "SentCodeTypeSms": "по SMS",
+        "SentCodeTypeEmailCode": "на почту, привязанную к Telegram",
+        "SentCodeTypeCall": "звонком",
+        "SentCodeTypeFlashCall": "звонком (код — последние цифры номера)",
+        "SentCodeTypeFragmentSms": "через Fragment",
+        "SentCodeTypeSetUpEmailRequired": "Telegram требует сначала привязать почту",
+    }.get(kind, kind)
+    print(f"Код отправлен: {where}. Тип: {kind}")
 
 
 async def finish(code):

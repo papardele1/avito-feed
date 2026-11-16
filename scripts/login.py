@@ -74,17 +74,20 @@ async def qr():
     c = client()
     await c.connect()
     qr_login = await c.qr_login()
-    for attempt in range(16):  # ~8 минут: QR обновляется каждые ~30 секунд
+    for attempt in range(30):  # ~15 минут: QR обновляется каждые ~30 секунд
         from urllib.parse import quote
         img = "https://api.qrserver.com/v1/create-qr-code/?size=420x420&margin=20&data=" + quote(qr_login.url, safe="")
-        print(f"\n===== QR №{attempt + 1} (действует ~30 секунд) =====")
+        from datetime import timedelta, timezone
+        until = qr_login.expires.astimezone(timezone(timedelta(hours=3))).strftime("%H:%M:%S")
+        print(f"\n===== QR №{attempt + 1} — действует до {until} по Москве =====")
         print("С КОМПЬЮТЕРА: откройте ссылку и отсканируйте картинку в Telegram → Настройки → Устройства → Подключить устройство:")
         print(img)
         print("С ТЕЛЕФОНА: нажмите на ссылку — откроется Telegram и спросит подтверждение входа:")
         print(qr_login.url)
         sys.stdout.flush()
         try:
-            await qr_login.wait(timeout=30)
+            left = (qr_login.expires - __import__("datetime").datetime.now(qr_login.expires.tzinfo)).total_seconds()
+            await qr_login.wait(timeout=max(5, left))
             break
         except asyncio.TimeoutError:
             await qr_login.recreate()
@@ -92,7 +95,7 @@ async def qr():
             await c.sign_in(password=os.environ["TG_2FA"])
             break
     else:
-        raise SystemExit("QR не отсканирован за 8 минут — запустите ещё раз.")
+        raise SystemExit("QR не отсканирован за 15 минут — запустите ещё раз.")
     me = await c.get_me()
     SESSION.write_bytes(fernet().encrypt(c.session.save().encode()))
     if PENDING.exists():

@@ -64,9 +64,21 @@ if t:
         ("GET", f"/core/v1/accounts/{uid}/balance/", None),
         ("POST", "/cpxpromo/1/getBids/0", {}),
     ]
+    st, rep = call("GET", "/autoload/v2/reports?per_page=1", t)
+    out["deprecation"] = rep.get("_deprecation")
+    rid = (rep.get("reports") or [{}])[0].get("id")
+    out["report_fields"] = list((rep.get("reports") or [{}])[0])
+    checks += [
+        ("GET", "/autoload/v3/reports/last_completed_report", None),
+        ("GET", f"/autoload/v3/reports/{rid}", None),
+        ("GET", f"/autoload/v2/reports/{rid}/items?per_page=1", None),
+        ("GET", "/autoload/v3/reports?per_page=1", None),
+        ("POST", "/autoload/v1/upload", None),
+    ]
+    checks = [c for c in checks if c[1] != "/autoload/v1/upload"]
     for m, p, b in checks:
         st, r = call(m, p, t, body=b)
-        key = p.replace(str(uid), "{id}").split("?")[0]
+        key = p.replace(str(uid), "{id}").replace(str(rid), "{rid}").split("?")[0]
         out[key] = {"status": st, "shape": shape(r)}
 Path("docs/api_probe.json").write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
 print(json.dumps({k: v.get("status") for k, v in out.items()}))

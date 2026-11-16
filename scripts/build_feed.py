@@ -30,7 +30,7 @@ EN_RU = {
     "lavender": "фиолетовый", "lavander": "фиолетовый", "lilac": "фиолетовый", "purple": "фиолетовый",
     "violet": "фиолетовый", "violet shadow": "фиолетовый", "cobalt violet": "фиолетовый", "ultra violet": "фиолетовый",
     "green": "зеленый", "sage": "зеленый", "mint": "зеленый", "pistachio": "зеленый", "pistacho": "зеленый",
-    "olive": "зеленый", "starlit green": "зеленый", "aurora green": "зеленый", "green shadow": "зеленый",
+    "olive": "зеленый", "starlit green": "зеленый", "coraled": "красный", "coral red": "красный", "aurora green": "зеленый", "green shadow": "зеленый",
     "green silk": "зеленый", "yellow": "желтый",
 }
 

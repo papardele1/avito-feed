@@ -155,6 +155,8 @@ def rule_name(section, header, name):
         return "Samsung " + name
     if section == "Google":
         return name if low.startswith("google") else "Google " + name
+    if "garmin" in low or low.startswith("010-"):
+        return name
     if section == "Умные очки":
         if low.startswith(("oakley", "meta oakley")):
             return "Oakley Meta " + re.sub(r"^(Meta )?Oakley ", "", name)

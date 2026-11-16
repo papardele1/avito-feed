@@ -63,7 +63,11 @@ SECTIONS = {  # категория Авито → разделы каталог�
     "Игры, приставки и программы": {5}, "Бытовая техника": {6}, "Фототехника": {7},
     "Товары для компьютера": {8, 2, 1},
 }
-SYN = [(r"\bs(1[0-9])\b", r"series \1"), (r"\bwatch\s?(\d)", r"watch \1")]
+SYN = [(r"\bs(1[0-9])\b", r"series \1"), (r"\bwatch\s?(\d)", r"watch \1"),
+       # опечатки поставщика в цветах
+       (r"\blavander\b", "lavender"), (r"\biceblue\b", "ice blue"), (r"\bicyblue\b", "icy blue"),
+       (r"\bcoraled\b", "coral red"), (r"\bpistacho\b", "pistachio"), (r"\bjetblack\b", "jet black"),
+       (r"\bstandart\b", "standard"), (r"\binsta 360\b", "insta360")]
 
 
 def color_words(s):

@@ -79,7 +79,7 @@ def color_words(s):
 def model_and_color(it, prof):
     """Модель (без цвета и памяти) и цвет позиции прайса."""
     color = (it.get("color_official") or it.get("color_src") or "").strip()
-    if prof and prof.get("Model"):
+    if prof and prof.get("Model") and prof.get("Vendor"):
         model = f"{prof.get('Vendor') or ''} {prof['Model']}"
     elif it.get("model"):
         model = it["model"]
@@ -181,7 +181,7 @@ def ensure_images(items, route):
         key = image_key(it)
         if key in result:
             continue
-        generic = not (prof.get("Model") or it.get("model"))
+        generic = not ((prof.get("Vendor") and prof.get("Model")) or it.get("model"))
         c = match(model, color, index, SECTIONS.get(prof.get("Category")), generic)
         if not c:
             missed.append(f"{model} | {color}")

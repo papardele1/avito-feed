@@ -12,7 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: pip install pillow
-      - run: python scripts/fetch_image.py "${{ github.event.inputs.name }}" ${{ github.event.inputs.urls }}
+      - run: python scripts/fetch_image.py "${{ github.event.inputs.name }}" $URLS
+        env:
+          URLS: ${{ github.event.inputs.urls }}
       - run: |
           git config user.name "avito-feed-bot"; git config user.email "actions@users.noreply.github.com"
           git add docs/img; git diff --cached --quiet || (git commit -m "Фото-кандидат" && git pull --rebase -q origin main && git push)

@@ -11,6 +11,9 @@ def get(url):
 
 name, *urls = sys.argv[1:]
 for i, url in enumerate(urls):
+    fname = f"{name}_{i}"
+    if "|" in url:
+        fname, url = url.split("|", 1)
     try:
         data = get(url)
         try:
@@ -31,7 +34,7 @@ for i, url in enumerate(urls):
         if im.mode in ("RGBA", "LA", "P"):
             im = im.convert("RGBA"); bg = Image.new("RGB", im.size, "white"); bg.paste(im, mask=im.split()[-1]); im = bg
         im = im.convert("RGB")
-        out = f"docs/img/{name}_{i}.jpg"
+        out = f"docs/img/{fname}.jpg"
         im.save(out, quality=92)
         print("сохранено", out, im.size)
     except Exception as e:

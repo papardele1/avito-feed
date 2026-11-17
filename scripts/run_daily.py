@@ -34,6 +34,11 @@ def main():
                     if o.get(k):
                         it[k] = o[k]
                 it["extra_specs"] = o.get("specs", [])
+    # позиции вне прайса (от других поставщиков) с фиксированной ценой — data/manual_items.json
+    man_path = ROOT / "data" / "manual_items.json"
+    for m in (json.loads(man_path.read_text(encoding="utf-8")) if man_path.exists() else []):
+        m = dict(m, group=m["title"], manual=True)
+        items.append(m)
     import images
     try:
         imap, img_ok, img_missed = images.ensure_images(items, build_feed.route)

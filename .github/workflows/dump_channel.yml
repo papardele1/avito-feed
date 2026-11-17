@@ -11,8 +11,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: "3.12"}
-      - run: pip install -U telethon cryptography && python -c "import telethon;print(\"telethon\",telethon.__version__)"
-      - run: cd scripts && if [ "${{ github.event.inputs.channel }}" = "probe" ]; then python probe_channel.py; else python dump_channel.py "${{ github.event.inputs.channel }}" "${{ github.event.inputs.limit }}"; fi
+      - run: pip install -U telethon cryptography kurigram tgcrypto-pyrofork || pip install -U telethon cryptography kurigram && python -c "import telethon;print(\"telethon\",telethon.__version__)"
+      - run: cd scripts && if [ "${{ github.event.inputs.channel }}" = "probe" ]; then python probe_channel.py; elif [ "${{ github.event.inputs.channel }}" = "kuri" ]; then python probe_kuri.py "${{ github.event.inputs.limit }}"; else python dump_channel.py "${{ github.event.inputs.channel }}" "${{ github.event.inputs.limit }}"; fi
         env:
           TG_API_ID: ${{ secrets.TG_API_ID }}
           TG_API_HASH: ${{ secrets.TG_API_HASH }}

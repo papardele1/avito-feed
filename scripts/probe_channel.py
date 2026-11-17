@@ -37,6 +37,7 @@ async def main():
     ids = [11510, 12064, 12918, 12919, 12967, 13070, 13048, 12971, 12970, 12969, 12968, 12966, 12965, 12964, 12963]
     msgs = await c.get_messages(ent, ids=ids)
     out["by_id"] = [pack(m) if m else None for m in msgs]
+    out["raw"] = [str(m.to_dict())[:3000] for m in msgs[:9] if m]
     out["newest"] = [pack(m) for m in await c.get_messages(ent, limit=15)]
     for h in ("6CP_wv6m3Os2NzEy", "Abfsk6RrTLNkYzky"):
         try:

@@ -12,7 +12,7 @@ jobs:
       - uses: actions/setup-python@v5
         with: {python-version: "3.12"}
       - run: pip install telethon==1.36.0 cryptography
-      - run: cd scripts && python dump_channel.py "${{ github.event.inputs.channel }}" "${{ github.event.inputs.limit }}"
+      - run: cd scripts && if [ "${{ github.event.inputs.channel }}" = "probe" ]; then python probe_channel.py; else python dump_channel.py "${{ github.event.inputs.channel }}" "${{ github.event.inputs.limit }}"; fi
         env:
           TG_API_ID: ${{ secrets.TG_API_ID }}
           TG_API_HASH: ${{ secrets.TG_API_HASH }}

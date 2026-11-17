@@ -1,4 +1,4 @@
-name: Фото с Яндекс Маркета
+name: Поиск фото товаров
 on:
   workflow_dispatch:
     inputs:
@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: pip install pillow
-      - run: python scripts/ym_images.py "${{ github.event.inputs.only }}"
+      - run: python scripts/photo_finder.py "${{ github.event.inputs.only }}"
       - run: |
           git config user.name "avito-feed-bot"; git config user.email "actions@users.noreply.github.com"
           git add docs/img/cand; git diff --cached --quiet || (git commit -m "Фото-кандидаты" && git pull --rebase -q origin main && git push)

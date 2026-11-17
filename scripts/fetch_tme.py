@@ -23,7 +23,7 @@ for page in range(80):
             br.replace_with("\n")
         for img in t.find_all("img"):            # эмодзи-картинки → их alt
             img.replace_with(img.get("alt", ""))
-        tm = m.select_one("time")
+        tm = m.select_one("time[datetime]")
         out[pid] = {"id": pid, "date": tm["datetime"] if tm else "", "text": t.get_text()}
     new_before = min(ids)
     if new_before in seen:

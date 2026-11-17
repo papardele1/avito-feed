@@ -280,7 +280,7 @@ def route(it):
                 "ProductType": "Игровые приставки"}
     if "dualsense" in src or "joy-con" in src:
         return {"Category": "Игры, приставки и программы", "GoodsType": "Игровые приставки и аксессуары",
-                "ProductType": "Аксессуары", "ProductSubType": "Геймпады и контроллеры",
+                "ProductType": "Аксессуары", "ProductSubType": it.get("subtype") or "Геймпады и контроллеры",
                 "Color": RU_CAP.get(color_for(it["source_line"], None) or "", "Другой")}
     if re.search(r"gopro|insta ?360|osmo 360|osmo pocket", src):
         return {"Category": "Аудио и видео", "GoodsType": "Видеокамеры", "ProductType": "Экшн-камеры"}

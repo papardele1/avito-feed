@@ -22,6 +22,18 @@ def main():
     items, errors = parse_price.run(text=text)
     for it in items:
         it["title"] = parse_price.short_title(it["title"])
+    # ручные правки позиций (название, фото, регион, подтип, характеристики) — data/overrides.json
+    ov_path = ROOT / "data" / "overrides.json"
+    overrides = json.loads(ov_path.read_text(encoding="utf-8")) if ov_path.exists() else []
+    for it in items:
+        for o in overrides:
+            if o["match"].lower() in (it["source_line"] + " " + it["title"]).lower():
+                it["title"] = o.get("title", it["title"])
+                it["group"] = it["title"]
+                for k in ("region", "subtype", "image"):
+                    if o.get(k):
+                        it[k] = o[k]
+                it["extra_specs"] = o.get("specs", [])
     import images
     try:
         imap, img_ok, img_missed = images.ensure_images(items, build_feed.route)
@@ -32,6 +44,9 @@ def main():
         img_ok, img_missed = [], []
     else:
         (ROOT / "data" / "images.json").write_text(json.dumps(imap, ensure_ascii=False, indent=1), encoding="utf-8")
+    for it in items:
+        if it.get("image"):
+            imap[build_feed.image_key(it)] = [images.RAW_BASE + it["image"]]
     xml, skipped, no_img = build_feed.build(items, imap)
     new_ads = xml.count("<Ad>")
     old_ads = FEED.read_text(encoding="utf-8").count("<Ad>") if FEED.exists() else 0

@@ -43,6 +43,7 @@ def specs(it, prof):
         rows.append(("Версия", REGION_TEXT[it["region"]] + (" (США)" if it["region"] == "US" else "")))
     if it.get("chip"):
         rows.append(("Процессор", it["chip"]))
+    rows += [tuple(r) for r in it.get("extra_specs", [])]
     return rows
 
 

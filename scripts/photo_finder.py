@@ -64,6 +64,14 @@ def main():
         print("sitemap", root, len(u))
         urls += [x for x in u if re.search(r"/product/|apple-avenue.ru/catalog/[^/]+/[^/]+", x)]
     slugs = [(u, toks(u.rstrip("/").rsplit("/", 1)[-1].replace("_", "-"))) for u in urls]
+    if only and any(o.startswith("grep:") for o in only):
+        for o in only:
+            ws = o[5:].split("+")
+            hits = [u for u, t in slugs if all(w in t for w in ws)]
+            print("GREP", o, len(hits))
+            for h in hits[:25]:
+                print("   ", h)
+        return
     for it in items:
         slug, _m, _e, q = it[:4]
         need = it[4] if len(it) > 4 and it[4] else [w for w in re.findall(r"[a-z0-9]+", q.lower())]

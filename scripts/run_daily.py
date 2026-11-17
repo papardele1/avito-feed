@@ -51,6 +51,32 @@ def main():
             if all(w in text for w in need) and not any(w in text for w in excl):
                 it["image"] = f"cand/{slug}.jpg"
                 break
+    # Apple Watch, отличающиеся только размером ремешка (S/M и M/L, M и L), — одно объявление:
+    # Авито считает их одним товаром и блокирует второе как «повторное размещение».
+    # Цена — бо́льшая из пары, оба размера указываем в описании. Id берём у объявления,
+    # которое на Авито активно (заблокированные перечислены ниже).
+    aw_blocked = {"Apple Watch SE3 44 Midnight 2026 M/L", "Apple Watch S11 46 Space Gray S/M",
+                  "Apple Watch S12 46 Space Gray S/M", "Apple Watch SE3 40 Midnight 2026 S/M",
+                  "Apple Watch S11 46 Silver Pur Fog S/M", "Watch Ultra 4 49 Natural Desert Alpine Loop M",
+                  "Apple Watch S11 42 Jet Black S/M", "Apple Watch S12 46 Bronze Milanese Loop S/M"}
+    band_re = re.compile(r"\s+(S/M|M/L|S|M|L)\s*$")
+    groups = {}
+    for it in items:
+        t = it["title"]
+        if "Watch" in t and band_re.search(t) and not re.search(r"Galaxy|Pixel|OnePlus|Huawei|Xiaomi", t):
+            groups.setdefault(band_re.sub("", t), []).append(it)
+    drop = set()
+    for base, its in groups.items():
+        if len(its) < 2:
+            continue
+        sizes = [band_re.search(i["title"]).group(1) for i in its]
+        keep = next((i for i in its if i["title"] not in aw_blocked), its[0])
+        keep["price"] = max(i["price"] for i in its)
+        keep["title"] = keep["group"] = base
+        keep["extra_specs"] = (keep.get("extra_specs") or []) + [
+            ["Размер ремешка", " и ".join(sorted(sizes, key=len, reverse=True)) + " — оба в наличии, укажите нужный при заказе"]]
+        drop.update(id(i) for i in its if i is not keep)
+    items = [it for it in items if id(it) not in drop]
     # позиции вне прайса (от других поставщиков) с фиксированной ценой — data/manual_items.json
     man_path = ROOT / "data" / "manual_items.json"
     for m in (json.loads(man_path.read_text(encoding="utf-8")) if man_path.exists() else []):

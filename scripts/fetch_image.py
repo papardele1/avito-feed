@@ -13,12 +13,17 @@ name, *urls = sys.argv[1:]
 for i, url in enumerate(urls):
     try:
         data = get(url)
-        if data[:15].lstrip().startswith((b"<", b"<!")) or b"<html" in data[:2000].lower():
+        try:
+            Image.open(io.BytesIO(data)); is_img = True
+        except Exception:
+            is_img = False
+        if not is_img:
             html = data.decode("utf-8", "ignore")
             m = re.search(r'<meta[^>]+property=["\']og:image["\'][^>]+content=["\']([^"\']+)', html) or \
-                re.search(r'content=["\']([^"\']+)["\'][^>]+property=["\']og:image', html)
+                re.search(r'content=["\']([^"\']+)["\'][^>]+property=["\']og:image', html) or \
+                re.search(r'(https?://[^"\'\s]+/media/catalog/product/[^"\'\s]+?\.(?:jpg|jpeg|png|webp))', html)
             if not m:
-                print("нет og:image:", url); continue
+                print("нет картинки на странице:", url, len(html), html[:200].replace("\n", " ")); continue
             img_url = m.group(1).replace("&amp;", "&")
             print("og:image:", img_url)
             data = get(img_url)

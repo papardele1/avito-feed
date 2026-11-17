@@ -37,15 +37,16 @@ for pid in extra:
     if pid in out:
         continue
     try:
-        html = urllib.request.urlopen(urllib.request.Request(f"https://t.me/{ch}/{pid}?embed=1&mode=tme", headers=UA),
+        html = urllib.request.urlopen(urllib.request.Request(f"https://t.me/{ch}/{pid}", headers=UA),
                                       timeout=40).read().decode("utf-8", "ignore")
     except Exception as e:
         print("embed err", pid, e); continue
     soup = BeautifulSoup(html, "html.parser")
-    t = soup.select_one("div.tgme_widget_message_text") or soup.select_one(".tgme_widget_message_bubble")
-    if not t:
+    t = None
+    if True:
+        import html as H
         m = re.search(r'<meta property="og:description" content="([^"]*)"', html)
-        out[pid] = {"id": pid, "date": "", "text": (m.group(1) if m else ""), "src": "og"}
+        out[pid] = {"id": pid, "date": "", "text": H.unescape(m.group(1)) if m else "", "src": "og"}
         continue
     for br in t.find_all("br"):
         br.replace_with("\n")

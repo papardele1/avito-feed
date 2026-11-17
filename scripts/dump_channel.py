@@ -11,8 +11,15 @@ async def main(name, limit):
     ent = await c.get_entity(name)
     out = []
     async for m in c.iter_messages(ent, limit=limit):
-        if m.message:
-            out.append({"id": m.id, "date": str(m.date), "edit": str(m.edit_date or ""), "text": m.message})
+        btns = []
+        if m.reply_markup and getattr(m.reply_markup, "rows", None):
+            for row in m.reply_markup.rows:
+                for b in row.buttons:
+                    btns.append({"text": getattr(b, "text", ""), "url": getattr(b, "url", None)})
+        ents = [getattr(e, "url", None) for e in (m.entities or []) if getattr(e, "url", None)]
+        if m.message or btns:
+            out.append({"id": m.id, "date": str(m.date), "edit": str(m.edit_date or ""), "text": m.message or "",
+                        "buttons": btns, "links": ents})
     await c.disconnect()
     blob = base64.b64encode(json.dumps(out, ensure_ascii=False).encode()).decode()
     print("POSTS", len(out))

@@ -1,0 +1,12 @@
+name: Канал через веб t.me
+on:
+  workflow_dispatch:
+    inputs:
+      channel: {description: "username канала", required: true}
+jobs:
+  get:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install beautifulsoup4
+      - run: python scripts/fetch_tme.py "${{ github.event.inputs.channel }}"

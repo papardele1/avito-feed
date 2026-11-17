@@ -34,6 +34,23 @@ def main():
                     if o.get(k):
                         it[k] = o[k]
                 it["extra_specs"] = o.get("specs", [])
+    # фото, найденные вручную на других сайтах (docs/img/cand) — data/photo_queries.json:
+    # [имя файла, слова, которые все должны быть в строке, слова-исключения]
+    pq_path = ROOT / "data" / "photo_queries.json"
+    cand_dir = ROOT / "docs" / "img" / "cand"
+    rules = []
+    for q in (json.loads(pq_path.read_text(encoding="utf-8")) if pq_path.exists() else []):
+        if (cand_dir / (q[0] + ".jpg")).exists():
+            rules.append((q[0], [w.lower() for w in q[1]], [w.lower() for w in q[2]]))
+    rules.sort(key=lambda r: -sum(len(w) for w in r[1]))  # самые точные правила первыми
+    for it in items:
+        if it.get("image"):
+            continue
+        text = " " + (it["source_line"] + " " + it["title"]).lower() + " "
+        for slug, need, excl in rules:
+            if all(w in text for w in need) and not any(w in text for w in excl):
+                it["image"] = f"cand/{slug}.jpg"
+                break
     # позиции вне прайса (от других поставщиков) с фиксированной ценой — data/manual_items.json
     man_path = ROOT / "data" / "manual_items.json"
     for m in (json.loads(man_path.read_text(encoding="utf-8")) if man_path.exists() else []):

@@ -13,7 +13,15 @@ def pack(m):
         for row in m.reply_markup.rows:
             for b in row.buttons:
                 btns.append({"text": getattr(b, "text", ""), "url": getattr(b, "url", None)})
-    return {"id": m.id, "date": str(m.date), "edit": str(m.edit_date or ""), "text": m.message or "",
+    media = None
+    if m.media:
+        media = type(m.media).__name__
+        if getattr(m, "photo", None):
+            media += ":photo"
+        if getattr(m, "document", None):
+            media += ":" + str(getattr(m.document, "mime_type", ""))
+    return {"id": m.id, "media": media, "grouped": m.grouped_id, "views": m.views, "fwd": bool(m.fwd_from),
+            "action": type(m.action).__name__ if getattr(m, "action", None) else None, "date": str(m.date), "edit": str(m.edit_date or ""), "text": m.message or "",
             "buttons": btns, "links": [getattr(e, "url", None) for e in (m.entities or []) if getattr(e, "url", None)]}
 
 
@@ -26,7 +34,7 @@ async def main():
     out["about"] = full.full_chat.about
     out["pinned"] = full.full_chat.pinned_msg_id
     out["linked_chat"] = getattr(full.full_chat, "linked_chat_id", None)
-    ids = [11510, 12064, 12918, 12919, 12967, full.full_chat.pinned_msg_id or 0]
+    ids = [11510, 12064, 12918, 12919, 12967, 13070, 13048, 12971, 12970, 12969, 12968, 12966, 12965, 12964, 12963]
     msgs = await c.get_messages(ent, ids=ids)
     out["by_id"] = [pack(m) if m else None for m in msgs]
     out["newest"] = [pack(m) for m in await c.get_messages(ent, limit=15)]

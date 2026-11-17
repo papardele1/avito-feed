@@ -1,0 +1,11 @@
+name: Проверка сайтов для фото
+on:
+  workflow_dispatch:
+    inputs:
+      urls: {description: "ссылки через пробел", required: true}
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python scripts/site_probe.py ${{ github.event.inputs.urls }}

@@ -1,0 +1,17 @@
+name: Фото с Яндекс Маркета
+on:
+  workflow_dispatch:
+    inputs:
+      only: {description: "slug через запятую (пусто — все)", default: ""}
+permissions:
+  contents: write
+jobs:
+  get:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install pillow
+      - run: python scripts/ym_images.py "${{ github.event.inputs.only }}"
+      - run: |
+          git config user.name "avito-feed-bot"; git config user.email "actions@users.noreply.github.com"
+          git add docs/img/cand; git diff --cached --quiet || (git commit -m "Фото-кандидаты" && git pull --rebase -q origin main && git push)

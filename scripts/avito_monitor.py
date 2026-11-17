@@ -179,13 +179,13 @@ def full():
         out.setdefault("stats_status", []).append(st)
         info = {x["id"]: x for x in chunk}
         for row in (r.get("result") or {}).get("items", []):
-            s = Counter()
+            s = Counter({"uniqViews": 0, "uniqContacts": 0, "uniqFavorites": 0})
             for d in row.get("stats", []):
                 for k in ("uniqViews", "uniqContacts", "uniqFavorites"):
                     s[k] += d.get(k, 0) or 0
             x = info.get(row.get("itemId"), {})
             rows.append({"id": row.get("itemId"), "title": x.get("title"), "price": x.get("price"),
-                         "category": (x.get("category") or {}).get("name"), **s})
+                         "category": (x.get("category") or {}).get("name"), **dict(s)})
     rows.sort(key=lambda r: (r["uniqViews"], r["uniqContacts"]), reverse=True)
     out["totals"] = dict(sum((Counter({k: r[k] for k in ("uniqViews", "uniqContacts", "uniqFavorites")}) for r in rows), Counter()))
     out["items_with_views"] = sum(1 for r in rows if r["uniqViews"])

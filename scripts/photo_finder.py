@@ -52,7 +52,7 @@ def toks(s):
 
 def ok(slug_t, word):
     alts = COLOR.get(word, [word])
-    return any(a in slug_t for a in alts)
+    return any(a in slug_t for a in alts) or (word == "stantsiya" and "stanciya" in slug_t)
 
 
 def main():
@@ -62,11 +62,11 @@ def main():
     for root in ("https://2cent.ru/sitemap.xml", "https://apple-avenue.ru/sitemap.xml"):
         u = sitemap_urls(root)
         print("sitemap", root, len(u))
-        urls += [x for x in u if re.search(r"/(product|catalog)/", x)]
+        urls += [x for x in u if re.search(r"/product/|apple-avenue.ru/catalog/[^/]+/[^/]+", x)]
     slugs = [(u, toks(u.rstrip("/").rsplit("/", 1)[-1].replace("_", "-"))) for u in urls]
     for it in items:
         slug, _m, _e, q = it[:4]
-        need = it[4] if len(it) > 4 else [w for w in re.findall(r"[a-z0-9]+", q.lower())]
+        need = it[4] if len(it) > 4 and it[4] else [w for w in re.findall(r"[a-z0-9]+", q.lower())]
         excl = it[5] if len(it) > 5 else []
         if only and slug not in only:
             continue

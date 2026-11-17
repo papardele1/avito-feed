@@ -22,6 +22,11 @@ for url in sys.argv[1:]:
             links.append(f"{txt[:70]} -> {href}")
     for l in list(dict.fromkeys(links))[:12]:
         print("  L", l)
+    for f in re.findall(r'<form[^>]*>.*?</form>', page, re.S)[:4]:
+        act = re.search(r'action="([^"]*)"', f); names = re.findall(r'name="([^"]+)"', f)
+        print("  FORM", act.group(1) if act else None, names[:6])
+    for u in re.findall(r'["\'](/[a-z/_-]*search[a-z/_-]*[^"\']*)["\']', page)[:6]:
+        print("  S", u)
     og = re.search(r'property="og:image" content="([^"]+)"', page)
     print("  OG", og.group(1) if og else None)
     imgs = re.findall(r'(?:src|data-src)="([^"]+\.(?:jpg|jpeg|png|webp)[^"]*)"', page)

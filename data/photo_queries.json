@@ -170,7 +170,8 @@
    "pixel",
    "watch",
    "4",
-   "45mm"
+   "45mm",
+   "obsidian"
   ],
   []
  ],
@@ -206,7 +207,7 @@
    "watch",
    "5",
    "41mm",
-   "silver"
+   "fog"
   ],
   []
  ],
@@ -224,7 +225,7 @@
    "watch",
    "5",
    "41mm",
-   "pyrite"
+   "olive"
   ],
   []
  ],
@@ -242,7 +243,7 @@
    "watch",
    "5",
    "45mm",
-   "silver"
+   "fog"
   ],
   []
  ],
@@ -260,7 +261,7 @@
    "watch",
    "5",
    "45mm",
-   "pyrite"
+   "olive"
   ],
   []
  ],
@@ -586,10 +587,13 @@
   [],
   "Canon PowerShot G7 X Mark III черный",
   [
-   "g7",
+   "g7x",
+   "iii",
    "black"
   ],
-  []
+  [
+   "anniversary"
+  ]
  ],
  [
   "canon_g7x_silver",
@@ -600,7 +604,8 @@
   [],
   "Canon PowerShot G7 X Mark III серебристый",
   [
-   "g7",
+   "g7x",
+   "iii",
    "silver"
   ],
   []
@@ -655,16 +660,19 @@
   "Apple AirPods 4",
   [
    "naushniki",
+   "apple",
    "airpods",
-   "4"
+   "4",
+   "white"
   ],
   [
-   "keys",
    "anc",
-   "shumopodavleniem",
    "color",
+   "pravyy",
+   "levyy",
    "pro",
-   "max"
+   "max",
+   "keys"
   ]
  ],
  [
@@ -676,13 +684,17 @@
   "Apple AirPods 4 с шумоподавлением",
   [
    "naushniki",
+   "apple",
    "airpods",
    "4",
-   "anc"
+   "anc",
+   "white"
   ],
   [
-   "keys",
    "color",
+   "pravyy",
+   "levyy",
+   "keys",
    "pro",
    "max"
   ]
@@ -926,7 +938,10 @@
   [],
   "Whoop 5.0 Peak",
   [
-   "whoop"
+   "fitnes",
+   "braslet",
+   "whoop",
+   "5"
   ],
   []
  ],

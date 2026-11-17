@@ -154,5 +154,11 @@ def summary():
     print("\n".join(lines))
 
 
+def upload():
+    """Запустить загрузку файла сейчас, не дожидаясь расписания Авито."""
+    st, r = call("POST", "/autoload/v1/upload")
+    print("upload:", st, json.dumps(r, ensure_ascii=False)[:300])
+
+
 if __name__ == "__main__":
-    {"report": report, "summary": summary}[sys.argv[1]]()
+    {"report": report, "summary": summary, "upload": upload}[sys.argv[1]]()

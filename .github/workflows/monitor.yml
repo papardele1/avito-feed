@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "report или summary"
+        description: "report, summary или upload"
         default: "report"
 
 permissions:

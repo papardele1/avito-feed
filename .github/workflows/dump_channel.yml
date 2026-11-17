@@ -1,0 +1,19 @@
+name: Выгрузка канала для сравнения
+on:
+  workflow_dispatch:
+    inputs:
+      channel: {description: "username канала", required: true}
+      limit: {description: "сколько постов", default: "400"}
+jobs:
+  dump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install telethon==1.36.0 cryptography
+      - run: cd scripts && python dump_channel.py "${{ github.event.inputs.channel }}" "${{ github.event.inputs.limit }}"
+        env:
+          TG_API_ID: ${{ secrets.TG_API_ID }}
+          TG_API_HASH: ${{ secrets.TG_API_HASH }}
+          TG_SESSION_KEY: ${{ secrets.TG_SESSION_KEY }}

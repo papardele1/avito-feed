@@ -31,7 +31,7 @@ COUNTRY = "Китай"
 EN_RU = {
     "black": "черный", "jet black": "черный", "jetblack": "черный", "midnight": "черный", "night sky": "черный",
     "space black": "черный", "obsidian": "черный", "infinite black": "черный", "black velvet": "черный",
-    "white": "белый", "star white": "белый", "starlight": "белый", "snow": "белый", "frost": "белый",
+    "white": "белый", "star white": "белый", "starlight": "белый", "snow": "белый", "frost": "голубой",
     "silver": "серебристый", "silver shadow": "серебристый", "whitesilver": "серебристый",
     "blue": "синий", "navy": "синий", "deep blue": "синий", "blue shadow": "синий", "blueberry": "синий",
     "ultramarine": "синий", "sky blue": "голубой", "light blue": "голубой", "ice blue": "голубой",

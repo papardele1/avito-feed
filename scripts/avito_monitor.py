@@ -209,6 +209,25 @@ def full():
     out["chats_today"] = len(today_chats)
     out["chats_new_today"] = sum(1 for c in chats if (c.get("created") or 0) >= start)
     out["chats_items"] = Counter((((c.get("context") or {}).get("value") or {}).get("title")) for c in today_chats).most_common(20)
+    # расходы и показы (stats v2)
+    v2 = Counter()
+    for i in range(0, len(items), 200):
+        st, r = call("POST", f"/stats/v2/accounts/{uid}/items", {
+            "dateFrom": today, "dateTo": today, "grouping": "day",
+            "itemIds": [x["id"] for x in items[i:i + 200]],
+            "metrics": ["views", "contacts", "favorites", "impressions", "allSpending", "spending",
+                        "presenceSpending", "promoSpending", "commission", "contactsMessenger",
+                        "contactsShowPhone"], "limit": 1000, "offset": 0})
+        out.setdefault("v2_status", []).append(st)
+        if st != 200:
+            out["v2_error"] = str(r)[:500]
+            continue
+        for g in (r.get("result") or {}).get("groupings", []):
+            for m in g.get("metrics", []):
+                v2[m.get("slug")] += m.get("value") or 0
+    out["v2_totals"] = dict(v2)
+    # блокировки
+    out["blocked"] = [x.get("title") for x in items if x["_status"] in ("blocked", "rejected")]
     # расходы
     st, bal = call("GET", f"/core/v1/accounts/{uid}/balance/")
     out["balance"] = {"status": st, **(bal if isinstance(bal, dict) else {})}

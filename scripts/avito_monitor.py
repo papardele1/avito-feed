@@ -154,6 +154,72 @@ def summary():
     print("\n".join(lines))
 
 
+def full():
+    """Полный отчёт за сегодня — печатает JSON в лог (в репозиторий не пишет: он публичный)."""
+    st, me = call("GET", "/core/v1/accounts/self")
+    uid = me["id"]
+    today = datetime.now(MSK).date().isoformat()
+    items = []
+    for status in ("active", "old", "removed", "blocked", "rejected"):
+        page = 1
+        while page <= 30:
+            st, r = call("GET", f"/core/v1/items?per_page=100&page={page}&status={status}")
+            res = r.get("resources", [])
+            items += [dict(x, _status=status) for x in res]
+            if len(res) < 100:
+                break
+            page += 1
+    out = {"date": today, "items_by_status": Counter(x["_status"] for x in items)}
+    rows = []
+    for i in range(0, len(items), 200):
+        chunk = items[i:i + 200]
+        st, r = call("POST", f"/stats/v1/accounts/{uid}/items", {
+            "dateFrom": today, "dateTo": today, "itemIds": [x["id"] for x in chunk],
+            "fields": ["uniqViews", "uniqContacts", "uniqFavorites"], "periodGrouping": "day"})
+        out.setdefault("stats_status", []).append(st)
+        info = {x["id"]: x for x in chunk}
+        for row in (r.get("result") or {}).get("items", []):
+            s = Counter()
+            for d in row.get("stats", []):
+                for k in ("uniqViews", "uniqContacts", "uniqFavorites"):
+                    s[k] += d.get(k, 0) or 0
+            x = info.get(row.get("itemId"), {})
+            rows.append({"id": row.get("itemId"), "title": x.get("title"), "price": x.get("price"),
+                         "category": (x.get("category") or {}).get("name"), **s})
+    rows.sort(key=lambda r: (r["uniqViews"], r["uniqContacts"]), reverse=True)
+    out["totals"] = dict(sum((Counter({k: r[k] for k in ("uniqViews", "uniqContacts", "uniqFavorites")}) for r in rows), Counter()))
+    out["items_with_views"] = sum(1 for r in rows if r["uniqViews"])
+    out["top"] = rows[:40]
+    cat = Counter()
+    for r in rows:
+        cat[r["category"]] += r["uniqViews"]
+    out["views_by_category"] = cat.most_common()
+    # переписки за сегодня
+    start = int(datetime.now(MSK).replace(hour=0, minute=0, second=0).timestamp())
+    chats, offset = [], 0
+    while offset < 500:
+        st, r = call("GET", f"/messenger/v2/accounts/{uid}/chats?limit=100&offset={offset}&chat_types=u2i")
+        cs = r.get("chats", [])
+        chats += cs
+        if len(cs) < 100:
+            break
+        offset += 100
+    today_chats = [c for c in chats if (c.get("created") or 0) >= start or ((c.get("last_message") or {}).get("created") or 0) >= start]
+    out["chats_total"] = len(chats)
+    out["chats_today"] = len(today_chats)
+    out["chats_new_today"] = sum(1 for c in chats if (c.get("created") or 0) >= start)
+    out["chats_items"] = Counter((((c.get("context") or {}).get("value") or {}).get("title")) for c in today_chats).most_common(20)
+    # расходы
+    st, bal = call("GET", f"/core/v1/accounts/{uid}/balance/")
+    out["balance"] = {"status": st, **(bal if isinstance(bal, dict) else {})}
+    st, cpa = call("POST", "/cpa/v3/balanceInfo", {})
+    out["cpa_balance"] = {"status": st, **(cpa if isinstance(cpa, dict) else {})}
+    st, ops = call("POST", f"/core/v1/accounts/{uid}/operations_history/", {
+        "dateTimeFrom": f"{today}T00:00:00", "dateTimeTo": f"{today}T23:59:59"})
+    out["operations"] = {"status": st, "data": ops}
+    print("FULLREPORT " + json.dumps(out, ensure_ascii=False, default=str))
+
+
 def upload():
     """Запустить загрузку файла сейчас, не дожидаясь расписания Авито."""
     st, r = call("POST", "/autoload/v1/upload")
@@ -161,4 +227,4 @@ def upload():
 
 
 if __name__ == "__main__":
-    {"report": report, "summary": summary, "upload": upload}[sys.argv[1]]()
+    {"report": report, "summary": summary, "upload": upload, "full": full}[sys.argv[1]]()

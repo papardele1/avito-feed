@@ -1,0 +1,11 @@
+name: ym probe
+on:
+  workflow_dispatch:
+    inputs:
+      url: {required: true}
+jobs:
+  p:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python scripts/ym_probe.py "${{ github.event.inputs.url }}"

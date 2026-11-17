@@ -31,6 +31,28 @@ for page in range(80):
     seen.add(new_before)
     before = new_before
     time.sleep(1)
+# посты, которых нет в ленте t.me/s (новый формат) — по одному через ?embed=1
+extra = [int(x) for x in sys.argv[2].split(",")] if len(sys.argv) > 2 and sys.argv[2] else []
+for pid in extra:
+    if pid in out:
+        continue
+    try:
+        html = urllib.request.urlopen(urllib.request.Request(f"https://t.me/{ch}/{pid}?embed=1&mode=tme", headers=UA),
+                                      timeout=40).read().decode("utf-8", "ignore")
+    except Exception as e:
+        print("embed err", pid, e); continue
+    soup = BeautifulSoup(html, "html.parser")
+    t = soup.select_one("div.tgme_widget_message_text") or soup.select_one(".tgme_widget_message_bubble")
+    if not t:
+        m = re.search(r'<meta property="og:description" content="([^"]*)"', html)
+        out[pid] = {"id": pid, "date": "", "text": (m.group(1) if m else ""), "src": "og"}
+        continue
+    for br in t.find_all("br"):
+        br.replace_with("\n")
+    for img in t.find_all("img"):
+        img.replace_with(img.get("alt", ""))
+    out[pid] = {"id": pid, "date": "", "text": t.get_text(), "src": "embed"}
+    time.sleep(0.5)
 posts = sorted(out.values(), key=lambda p: -p["id"])
 print("POSTS", len(posts), "min id", before)
 blob = base64.b64encode(json.dumps(posts, ensure_ascii=False).encode()).decode()

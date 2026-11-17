@@ -39,6 +39,7 @@ async def main():
     out["by_id"] = [pack(m) if m else None for m in msgs]
     out["raw"] = [str(m.to_dict())[:3000] for m in msgs[:9] if m]
     out["newest"] = [pack(m) for m in await c.get_messages(ent, limit=15)]
+    out["all_ids"] = [(m.id, len(m.message or ""), str(m.edit_date or m.date)) async for m in c.iter_messages(ent, limit=3000)]
     for h in ("6CP_wv6m3Os2NzEy", "Abfsk6RrTLNkYzky"):
         try:
             inv = await c(CheckChatInviteRequest(h))

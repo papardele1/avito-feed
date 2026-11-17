@@ -3,10 +3,11 @@ on:
   workflow_dispatch:
     inputs:
       channel: {description: "username канала", required: true}
+      ids: {description: "id постов через запятую", default: ""}
 jobs:
   get:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - run: pip install beautifulsoup4
-      - run: python scripts/fetch_tme.py "${{ github.event.inputs.channel }}"
+      - run: python scripts/fetch_tme.py "${{ github.event.inputs.channel }}" "${{ github.event.inputs.ids }}"

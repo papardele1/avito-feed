@@ -241,9 +241,11 @@ def route(it):
         mem = mem_for(it["memory"], info.get("mem"))
         nest = NESTED.get((vendor, model), {}).get(mem or "", {})
         color = color_for(it.get("color_src", ""), list(nest) or info.get("colors"))
-        ram = it.get("ram") or (info.get("ram") or [None])[0]
         rams = nest.get(color or "")
-        if rams and ram not in rams:
+        ram = it.get("ram")
+        if not ram:  # в прайсе оперативки нет (Pixel) — берём из справочника для этой памяти и цвета
+            ram = (rams or info.get("ram") or [None])[0]
+        elif rams and ram not in rams:
             return None  # в справочнике Авито нет такой связки (память/цвет/оперативка) — не выкладываем
         p = {"Category": "Телефоны", "GoodsType": "Мобильные телефоны", "Vendor": vendor, "Model": model,
              "MemorySize": mem,

@@ -3,7 +3,7 @@
   report  — проверяет последний отчёт автозагрузки, пишет, если что-то изменилось или есть ошибки
   summary — сводка за день: просмотры, контакты, избранное, топ объявлений, баланс
 """
-import asyncio, json, os, re, sys
+import asyncio, json, os, re, sys, time
 from collections import Counter
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -212,12 +212,16 @@ def full():
     # расходы и показы (stats v2)
     v2 = Counter()
     for i in range(0, len(items), 200):
-        st, r = call("POST", f"/stats/v2/accounts/{uid}/items", {
+        for attempt in range(6):
+            st, r = call("POST", f"/stats/v2/accounts/{uid}/items", {
             "dateFrom": today, "dateTo": today, "grouping": "day",
             "itemIds": [x["id"] for x in items[i:i + 200]],
             "metrics": ["views", "contacts", "favorites", "impressions", "allSpending", "spending",
                         "presenceSpending", "promoSpending", "commission", "contactsMessenger",
                         "contactsShowPhone"], "limit": 1000, "offset": 0})
+            if st != 429:
+                break
+            time.sleep(20)
         out.setdefault("v2_status", []).append(st)
         if st != 200:
             out["v2_error"] = str(r)[:500]

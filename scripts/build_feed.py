@@ -13,11 +13,11 @@ from description import description as sales_description
 
 ROOT = Path(__file__).resolve().parent.parent
 ADDRESS = "Москва, Багратионовский проезд, 7к2"
-SHOW_FROM, SHOW_TO = 10, 22  # объявления видны с 10:00 до 22:00 по Москве
+SHOW_FROM, SHOW_TO = 9, 18  # объявления видны с 9:00 до 18:00 по Москве
 
 
 def show_window(now=None):
-    """Окно показа: сегодня 10–22, а после 22:00 — уже завтрашнее."""
+    """Окно показа: сегодня 9–18, а после 18:00 — уже завтрашнее."""
     from datetime import datetime, timedelta, timezone
     msk = timezone(timedelta(hours=3))
     now = now or datetime.now(msk)

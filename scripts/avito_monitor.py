@@ -54,6 +54,23 @@ def load_state():
     return json.loads(STATE.read_text()) if STATE.exists() else {}
 
 
+def diff():
+    """Объявления из последнего отчёта, которых уже нет в фиде, — с их статусом."""
+    feed = set(re.findall(r"<Id>(.*?)</Id>", (ROOT / "docs" / "avito.xml").read_text(encoding="utf-8")))
+    st, r = call("GET", "/autoload/v2/reports?per_page=1")
+    rid = r["reports"][0]["id"]
+    page, pages, seen = 0, 1, 0
+    while page < pages and page < 20:
+        st, it = call("GET", f"/autoload/v2/reports/{rid}/items?per_page=200&page={page}")
+        pages = (it.get("meta") or {}).get("pages", 0)
+        for item in it.get("items", []):
+            seen += 1
+            if item.get("ad_id") not in feed:
+                print("НЕ В ФИДЕ:", json.dumps({k: v for k, v in item.items() if k != "messages"}, ensure_ascii=False)[:400])
+        page += 1
+    print("отчёт", rid, "объявлений в отчёте", seen, "в фиде", len(feed))
+
+
 def report():
     st, r = call("GET", "/autoload/v2/reports?per_page=5")
     reps = [x for x in r.get("reports", []) if x.get("status") != "processing"]
@@ -250,4 +267,4 @@ def upload():
 
 
 if __name__ == "__main__":
-    {"report": report, "summary": summary, "upload": upload, "full": full}[sys.argv[1]]()
+    {"diff": diff, "report": report, "summary": summary, "upload": upload, "full": full}[sys.argv[1]]()

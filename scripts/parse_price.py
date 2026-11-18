@@ -79,7 +79,17 @@ def color_ru(c):
 
 
 def our_price(p):
-    return int(math.ceil(p * (1 + MARKUP) / ROUND_TO) * ROUND_TO)
+    """Наценка от закупочной цены: до 30 000 ₽ — +1 000 ₽, 30–50 тыс. — +1 500 ₽,
+    50–100 тыс. — +2 000 ₽, от 100 000 ₽ — +2 %."""
+    if p < 30000:
+        q = p + 1000
+    elif p < 50000:
+        q = p + 1500
+    elif p < 100000:
+        q = p + 2000
+    else:
+        q = p * (1 + MARKUP)
+    return int(math.ceil(q / ROUND_TO) * ROUND_TO)
 
 
 def stable_id(*parts):

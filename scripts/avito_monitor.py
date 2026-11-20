@@ -62,6 +62,23 @@ def orders():
         print("GET", path, st, json.dumps(r, ensure_ascii=False)[:3000])
 
 
+def msgs():
+    """Все тексты ошибок и предупреждений последнего отчёта с количеством."""
+    from collections import Counter
+    st, r = call("GET", "/autoload/v2/reports?per_page=1")
+    rid = r["reports"][0]["id"]
+    c = Counter()
+    for page in range(20):
+        st, it = call("GET", f"/autoload/v2/reports/{rid}/items?per_page=200&page={page}")
+        for item in it.get("items", []):
+            for m in item.get("messages") or []:
+                c[(m.get("type"), re.sub(r"<[^>]+>", "", m.get("description") or "")[:160])] += 1
+        if page + 1 >= (it.get("meta") or {}).get("pages", 0):
+            break
+    for (t, d), n in c.most_common(30):
+        print("MSG", n, t, d)
+
+
 def diff():
     """Объявления из последнего отчёта, которых уже нет в фиде, — с их статусом."""
     feed = set(re.findall(r"<Id>(.*?)</Id>", (ROOT / "docs" / "avito.xml").read_text(encoding="utf-8")))
@@ -275,4 +292,4 @@ def upload():
 
 
 if __name__ == "__main__":
-    {"orders": orders, "diff": diff, "report": report, "summary": summary, "upload": upload, "full": full}[sys.argv[1]]()
+    {"msgs": msgs, "orders": orders, "diff": diff, "report": report, "summary": summary, "upload": upload, "full": full}[sys.argv[1]]()

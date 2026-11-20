@@ -322,6 +322,7 @@ def ad_xml(it, prof, images, window=None):
            ("CountryExpedition", COUNTRY), ("MultiItem", "Да"), ("ContactMethod", "По телефону и в сообщениях")]
     parts = [f"    <{k}>{escape(str(v))}</{k}>" for k, v in el]
     parts.append(f"    <Description><![CDATA[{sales_description(it, prof)}]]></Description>")
+    parts.append("    <Delivery><Option>Выключена</Option></Delivery>")  # Авито Доставка выключена
     parts.append("    <Images>" + "".join(f'<Image url="{escape(u)}"/>' for u in images[:10]) + "</Images>")
     return "  <Ad>\n" + "\n".join(parts) + "\n  </Ad>"
 

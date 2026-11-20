@@ -54,6 +54,14 @@ def load_state():
     return json.loads(STATE.read_text()) if STATE.exists() else {}
 
 
+def orders():
+    """Заказы Авито Доставки и настройки доставки (что даёт API)."""
+    for path in ["/order-management/1/orders?limit=20", "/order-management/1/orders?statuses=on_confirmation&limit=20",
+                 "/delivery-sandbox/v1/settings", "/core/v1/accounts/self"]:
+        st, r = call("GET", path)
+        print("GET", path, st, json.dumps(r, ensure_ascii=False)[:3000])
+
+
 def diff():
     """Объявления из последнего отчёта, которых уже нет в фиде, — с их статусом."""
     feed = set(re.findall(r"<Id>(.*?)</Id>", (ROOT / "docs" / "avito.xml").read_text(encoding="utf-8")))
@@ -267,4 +275,4 @@ def upload():
 
 
 if __name__ == "__main__":
-    {"diff": diff, "report": report, "summary": summary, "upload": upload, "full": full}[sys.argv[1]]()
+    {"orders": orders, "diff": diff, "report": report, "summary": summary, "upload": upload, "full": full}[sys.argv[1]]()

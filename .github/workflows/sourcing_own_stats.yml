@@ -1,6 +1,10 @@
-name: Avito sourcing — private own-listing stats
+name: Avito sourcing — encrypted own-listing stats
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/sourcing_own_stats.yml'
   workflow_dispatch:
     inputs:
       days:
@@ -21,16 +25,24 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Install encryption library
+        run: pip install 'cryptography>=42,<50'
       - name: Export own-listing statistics
         run: python scripts/sourcing_export_avito.py --days "${DAYS}"
         env:
-          DAYS: ${{ inputs.days }}
+          DAYS: ${{ inputs.days || '30' }}
           AVITO_CLIENT_ID: ${{ secrets.AVITO_CLIENT_ID }}
           AVITO_CLIENT_SECRET: ${{ secrets.AVITO_CLIENT_SECRET }}
-      - name: Upload private CSV artifact
+      - name: Encrypt CSV and delete plaintext
+        shell: bash
+        run: |
+          python scripts/sourcing_encrypt_report.py encrypt private_reports/avito_own_stats.csv private_reports/avito_own_stats.csv.enc.json
+          rm -f private_reports/avito_own_stats.csv
+          test ! -f private_reports/avito_own_stats.csv
+      - name: Upload encrypted report only
         uses: actions/upload-artifact@v4
         with:
-          name: avito-own-listing-stats
-          path: private_reports/avito_own_stats.csv
-          retention-days: 3
+          name: avito-own-stats-encrypted
+          path: private_reports/avito_own_stats.csv.enc.json
+          retention-days: 2
           if-no-files-found: error

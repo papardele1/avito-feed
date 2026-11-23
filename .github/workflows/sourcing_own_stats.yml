@@ -1,0 +1,36 @@
+name: Avito sourcing — private own-listing stats
+
+on:
+  workflow_dispatch:
+    inputs:
+      days:
+        description: 'Number of completed days (1-365)'
+        required: true
+        default: '30'
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  export-own-stats:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Export own-listing statistics
+        run: python scripts/sourcing_export_avito.py --days "${DAYS}"
+        env:
+          DAYS: ${{ inputs.days }}
+          AVITO_CLIENT_ID: ${{ secrets.AVITO_CLIENT_ID }}
+          AVITO_CLIENT_SECRET: ${{ secrets.AVITO_CLIENT_SECRET }}
+      - name: Upload private CSV artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: avito-own-listing-stats
+          path: private_reports/avito_own_stats.csv
+          retention-days: 3
+          if-no-files-found: error

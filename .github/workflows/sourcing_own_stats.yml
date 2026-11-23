@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/sourcing_own_stats.yml'
+  schedule:
+    - cron: '23 3 * * *' # daily 06:23 Moscow; GitHub may delay scheduled runs
   workflow_dispatch:
     inputs:
       days:

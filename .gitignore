@@ -1,2 +1,5 @@
 __pycache__/
 *.pyc
+
+# Private sourcing analysis: never commit exports
+private_reports/

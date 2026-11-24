@@ -6,6 +6,8 @@ on:
     - cron: "20 6-15 * * *"
     # сводка за день: 18:50 по Москве
     - cron: "50 15 * * *"
+    # Принудительная загрузка на границе окончания показа (18:00 МСК).
+    - cron: "0 15 * * *"
   workflow_dispatch:
     inputs:
       mode:
@@ -35,7 +37,8 @@ jobs:
         run: |
           MODE="${{ github.event.inputs.mode }}"
           if [ -z "$MODE" ]; then
-            if [ "${{ github.event.schedule }}" = "50 15 * * *" ]; then MODE=summary; else MODE=report; fi
+            if [ "${{ github.event.schedule }}" = "0 15 * * *" ]; then MODE=upload;
+            elif [ "${{ github.event.schedule }}" = "50 15 * * *" ]; then MODE=summary; else MODE=report; fi
           fi
           python scripts/avito_monitor.py "$MODE"
       - name: Сохранить состояние

@@ -1,0 +1,130 @@
+name: Avito price audit (read only)
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/price_audit.yml'
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install telethon==1.36.0 cryptography
+      - name: Compare actual listing prices to feed
+        env:
+          AVITO_CLIENT_ID: ${{ secrets.AVITO_CLIENT_ID }}
+          AVITO_CLIENT_SECRET: ${{ secrets.AVITO_CLIENT_SECRET }}
+          TG_API_ID: ${{ secrets.TG_API_ID }}
+          TG_API_HASH: ${{ secrets.TG_API_HASH }}
+          TG_SESSION_KEY: ${{ secrets.TG_SESSION_KEY }}
+        run: |
+          PYTHONPATH=scripts python - <<'PY'
+          import asyncio, csv, json, re, tempfile, os
+          from collections import Counter, defaultdict
+          from pathlib import Path
+          from decimal import Decimal, InvalidOperation
+          from xml.etree import ElementTree as ET
+          from avito_api import call
+          from login import load_session
+          from telethon import TelegramClient
+          from telethon.sessions import StringSession
+
+          def get(path):
+              status, body = call("GET", path)
+              if status != 200:
+                  raise RuntimeError(f"Avito HTTP {status} at {path.split('?')[0]}")
+              return body
+
+          def money(x):
+              if isinstance(x, dict):
+                  x = x.get("value")
+              try:
+                  return Decimal(str(x)) if x is not None and not isinstance(x, bool) else None
+              except InvalidOperation:
+                  return None
+
+          feed = {}
+          for ad in ET.parse("docs/avito.xml").getroot().findall("Ad"):
+              key = ad.findtext("Id")
+              if not key or key in feed:
+                  raise RuntimeError("Missing or duplicate feed ID")
+              feed[key] = (ad.findtext("Title"), money(ad.findtext("Price")))
+          active = {}
+          for page in range(1, 51):
+              data = get(f"/core/v1/items?per_page=100&page={page}&status=active")
+              part = data["resources"]
+              for x in part:
+                  active[str(x["id"])] = x
+              if len(part) < 100:
+                  break
+          else:
+              raise RuntimeError("Active listing pagination limit reached")
+
+          reports = get("/autoload/v2/reports?per_page=5")["reports"]
+          rep = next(x for x in reports if x.get("status") != "processing")
+          rid = rep["id"]
+          links = defaultdict(set)
+          for page in range(20):
+              data = get(f"/autoload/v2/reports/{rid}/items?per_page=200&page={page}")
+              for x in data["items"]:
+                  key = str(x.get("ad_id") or "")
+                  aid = x.get("avito_id") or x.get("avitoId")
+                  if not aid:
+                      url = x.get("url") or x.get("avito_url") or ""
+                      m = re.search(r"(?:/items/|_)([0-9]+)(?:[/?#]|$)", str(url))
+                      aid = m.group(1) if m else None
+                  if key and aid:
+                      links[key].add(str(aid))
+              if page + 1 >= data["meta"]["pages"]:
+                  break
+          else:
+              raise RuntimeError("Report pagination limit reached")
+          reverse = Counter(aid for ids in links.values() for aid in ids)
+          rows = []
+          matched = set()
+          for key, (title, expected) in feed.items():
+              ids = links.get(key, set())
+              aid = next(iter(ids)) if len(ids) == 1 else ""
+              actual = None
+              if not ids:
+                  state = "no_id_mapping"
+              elif len(ids) != 1 or reverse[aid] != 1:
+                  state = "ambiguous_mapping"
+              elif aid not in active:
+                  state = "not_active_or_not_returned"
+              else:
+                  matched.add(aid)
+                  actual = money(active[aid].get("price"))
+                  state = "price_unavailable" if actual is None or expected is None else "match" if actual == expected else "mismatch"
+              rows.append(dict(feed_id=key, avito_id=aid, title=title, feed_price=expected, actual_price=actual, difference=actual-expected if actual is not None and expected is not None else None, status=state))
+          for aid, obj in active.items():
+              if aid not in matched:
+                  rows.append(dict(feed_id="", avito_id=aid, title=obj.get("title"), feed_price=None, actual_price=money(obj.get("price")), difference=None, status="active_not_matched"))
+          counts = Counter(row["status"] for row in rows)
+          print("PRICE_AUDIT " + json.dumps(dict(feed=len(feed), active=len(active), report_id=rid, counts=dict(counts)), ensure_ascii=False), flush=True)
+          # Full account data is sent only to the existing owner's Telegram Saved Messages.
+          async def deliver(path):
+              c = TelegramClient(StringSession(load_session()), int(os.environ["TG_API_ID"]), os.environ["TG_API_HASH"])
+              await c.connect()
+              try:
+                  if not await c.is_user_authorized():
+                      raise RuntimeError("Telegram session unauthorized")
+                  await c.send_file("me", str(path), caption="Сверка цен Avito / XML: " + json.dumps(dict(counts), ensure_ascii=False))
+              finally:
+                  await c.disconnect()
+          with tempfile.TemporaryDirectory() as tmp:
+              path = Path(tmp) / "avito_price_audit.csv"
+              with path.open("w", encoding="utf-8-sig", newline="") as f:
+                  w = csv.DictWriter(f, fieldnames=["feed_id", "avito_id", "title", "feed_price", "actual_price", "difference", "status"], delimiter=";")
+                  w.writeheader()
+                  w.writerows(rows)
+              asyncio.run(deliver(path))
+          print("PRIVATE_REPORT_SENT", flush=True)
+          PY
